@@ -18,17 +18,12 @@ import java.util.List;
  * Created by piotrpawlus on 11/12/2016.
  */
 @Controller
-@RequestMapping(value = "/users")
+@RequestMapping("/dashboard")
 public class UserController {
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "users")
     public ModelAndView index() {
         return new ModelAndView("users", "users", users());
-    }
-
-    @RequestMapping(value = "/login")
-    public String login() {
-        return "login";
     }
 
     private List users() {
