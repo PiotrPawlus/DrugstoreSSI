@@ -10,7 +10,7 @@
       <user-password>dfcedfd8dfdfdfcddfd9dfdedfc5dfd8dfcfdf9bdf98df99df9e</user-password>
       <resolve-scope>drugstore:drugstore_superuser,public</resolve-scope>
     </data-source>
-    <data-source name="" uuid="8e63f789-fad9-4576-9729-f1e609ddfe2e">
+    <data-source name="PostgreSQL -" uuid="8e63f789-fad9-4576-9729-f1e609ddfe2e">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
       <secret-storage>master_key</secret-storage>
       <first-sync>true</first-sync>

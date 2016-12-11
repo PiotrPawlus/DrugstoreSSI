@@ -21,7 +21,7 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="" uuid="8e63f789-fad9-4576-9729-f1e609ddfe2e">
+    <data-source source="LOCAL" name="PostgreSQL -" uuid="8e63f789-fad9-4576-9729-f1e609ddfe2e">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <configured-by-url>true</configured-by-url>

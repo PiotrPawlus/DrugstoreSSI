@@ -51,7 +51,7 @@
                             <div class="checkbox pull-left">
                                 <label><input type="checkbox">Zapamiętaj mnie</label>
                             </div>
-                            <a href="sprzedaz.html"><button class="btn btn-primary pull-right">Zaloguj się</button></a>
+                            <a href="/dashboard"><button class="btn btn-primary pull-right">Zaloguj się</button></a>
                             <div class="clearfix"></div>
                             <!-- </form> -->
                         </div>
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div style="text-align:center;margin:0 auto;">
-                <h6 style="color:#fff;">SSI Projekt V0.9 Powered by © Pawluś, Michnowicz 2016</h6>
+                <h6 style="color:#fff;">SSI Pharmacy Project V0.9 Powered by © Michnowicz, Obrzut, Pawluś 2016</h6>
             </div>
         </div>
 
