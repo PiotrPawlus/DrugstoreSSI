@@ -1,5 +1,4 @@
 <%@ attribute name="pageTitle" required="true" type="java.lang.String" %>
-<%@ tag pageEncoding="UTF-8"%>
 <%@ tag body-content="scriptless" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
@@ -7,21 +6,14 @@
 <html>
     <head>
         <spring:url value="/resources/css/style.css" var="styleCss" />
-        <spring:url value="/resources/css/jquery-ui.css" var="styleCss1" />
-        <spring:url value="/resources/css/jquery-ui.structure.css" var="styleCss2" />
-        <spring:url value="/resources/css/jquery-ui.theme.css" var="styleCss3" />
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Projekt SSI</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
         <link href="${styleCss}" rel="stylesheet" />
-        <link href="${styleCss1}" rel="stylesheet" />
-        <link href="${styleCss2}" rel="stylesheet" />
-        <link href="${styleCss3}" rel="stylesheet" />
     </head>
 
     <body id="dashboard">
@@ -47,10 +39,14 @@
                             </div>
                             <div class="pull-left navbar-info-single navbar-weather">
                                 <i class="fa fa-bolt pull-left" aria-hidden="true"></i>
-                                <p class="pull-left">  Kraków  6* 20km/h</p>
+                                <p class="pull-left">  Cracow  6* 20km/h</p>
                             </div>
                         </div>
                         <div class="clearfix"></div>
+                    </div>
+                    <div class="navbar-option-single navbar-settings">
+                        <p>Witaj, Admin <i class="fa fa-caret-down" aria-hidden="true"></i></p>
+                        <a href="/dashboard/sales"><p><i class="fa fa-cog" aria-hidden="true"></i>Settings</p></a>
                     </div>
                 </div>
             </nav>
@@ -58,44 +54,39 @@
                 <div class="skin-part">
                     <div class="sidebar">
                         <div class="sidebar-logo">
-                            <h2>Apteka<span>V0.9</span></h2>
+                            <h2>Pharmacy<span>V0.9</span></h2>
                         </div>
 
                         <div class="sidebar-option">
                             <div class="widget-menu">
-                                <span class="widget-menu-title">System Apteczny</span>
+                                <span class="widget-menu-title">Customer service</span>
                             </div>
                             <ul>
-                                <li><a href="/dashboard/notifications"><i class="fa fa-inbox" aria-hidden="true"></i>Komunikaty</a></li>
-                                <li><a href="/dashboard/producers"><i class="fa fa-telegram" aria-hidden="true"></i>Producenci Leków</a></li>
-                                <li><a href="/dashboard/categories"><i class="fa fa-bookmark" aria-hidden="true"></i>Kategorie</a></li>
-                                <li><a href="/dashboard/medicines"><i class="fa fa-medkit" aria-hidden="true"></i>Magazyn Leków</a></li>
+                                <li><a href="/dashboard/sales"><i class="fa fa-cart-plus" aria-hidden="true"></i>Sales</a></li>
+                                <li><a href="/dashboard/lexicon"><i class="fa fa-book" aria-hidden="true"></i>Medicines Lexicon</a></li>
+                            </ul>
+                        </div>
+
+
+                        <div class="sidebar-option">
+                            <div class="widget-menu">
+                                <span class="widget-menu-title">Pharmacy System</span>
+                            </div>
+                            <ul>
+                                <li><a href="/dashboard/notifications"><i class="fa fa-inbox" aria-hidden="true"></i>Notification</a></li>
+                                <li><a href="/dashboard/orders"><i class="fa fa-telegram" aria-hidden="true"></i>Orders</a></li>
+                                <li><a href="/dashboard/categories"><i class="fa fa-bookmark" aria-hidden="true"></i>Categories</a></li>
+                                <li><a href="/dashboard/warehouse"><i class="fa fa-medkit" aria-hidden="true"></i>Medicines Warehouse</a></li>
                             </ul>
                         </div>
 
                         <div class="sidebar-option">
                             <div class="widget-menu">
-                                <span class="widget-menu-title">Funkcje administratora</span>
+                                <span class="widget-menu-title">Admin functions</span>
                             </div>
                             <ul>
-                                <li><a href="/dashboard/users"><i class="fa fa-cog" aria-hidden="true"></i>Zarządzaj Personelem</a></li>
-                            </ul>
-                        </div>
-                        <div class="sidebar-option">
-                            <div class="widget-menu">
-                                <span class="widget-menu-title">Zarządzaj kontem</span>
-                            </div>
-                            <ul>
-                                <li><a href="/dashboard/personal"><i class="fa fa-bar-chart" aria-hidden="true"></i>Twoje dane personalne</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="sidebar-option">
-                            <div class="widget-menu">
-                                <span class="widget-menu-title">Informacje ogólne</span>
-                            </div>
-                            <ul>
-                                <li><a href="/dashboard/info"><i class="fa fa-cart-plus" aria-hidden="true"></i>Informacje</a></li>
+                                <li><a href="/dashboard/users"><i class="fa fa-cog" aria-hidden="true"></i> System administration</a></li>
+                                <li><a href="/dashboard/personal"><i class="fa fa-bar-chart" aria-hidden="true"></i>Personal Informations</a></li>
                             </ul>
                         </div>
                     </div>
@@ -109,8 +100,6 @@
         <spring:url value="/resources/js/script.js" var="scriptJS" />
 
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="${scriptJS}"></script>
     </body>

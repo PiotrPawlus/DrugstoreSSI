@@ -2,13 +2,14 @@
   Created by IntelliJ IDEA.
   User: piotrpawlus
   Date: 11/12/2016
-  Time: 21:21
+  Time: 21:29
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="z" tagdir="/WEB-INF/tags" %>
 
 <z:dashboard pageTitle="A simple page">
+
 
     <div class="dashboard-body">
         <div class="dashboard-body-inner">
@@ -57,6 +58,14 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <tr>
+                                        <td>12345</td>
+                                        <td>Jan Kowalski</td>
+                                        <td class="numeric">Warszawska 129, 31-490 Kraków</td>
+                                        <td class="numeric">05.11.1983</td>
+                                        <td class="numeric">10.02.2015</td>
+                                        <td class="numeric">Technik</td>
+                                    </tr>
                                     <tr>
                                         <td>12345</td>
                                         <td>Jan Kowalski</td>

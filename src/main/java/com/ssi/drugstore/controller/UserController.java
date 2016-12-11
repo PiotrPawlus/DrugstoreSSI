@@ -20,8 +20,31 @@ import java.util.List;
 public class UserController {
 
     @RequestMapping(value = "users")
-    public String index() {
-        return "users";
+    public ModelAndView index() {
+        return new ModelAndView("users", "users", users());
     }
 
+    private List users() {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        List users = new ArrayList();
+
+        try {
+
+            transaction = session.beginTransaction();
+            users = session.createQuery("from User").list();
+            transaction.commit();
+
+        } catch (HibernateException e) {
+
+            if (transaction != null) transaction.rollback();
+            throw e;
+
+        } finally {
+            session.close();
+        }
+
+        return users;
+    }
 }
