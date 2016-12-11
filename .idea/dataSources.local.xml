@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="hibernate.cfg.xml/Hibernate" uuid="f0aa568e-28e2-4c43-a645-3e578e1af115">
+      <database-info product="PostgreSQL" version="9.6.1" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <user-name>drugstore_superuser</user-name>
+      <user-password>dfcedfd8dfdfdfcddfd9dfdedfc5dfd8dfcfdf9bdf98df99df9e</user-password>
+      <resolve-scope>drugstore:drugstore_superuser,public</resolve-scope>
+    </data-source>
+    <data-source name="" uuid="8e63f789-fad9-4576-9729-f1e609ddfe2e">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <secret-storage>master_key</secret-storage>
+      <first-sync>true</first-sync>
+    </data-source>
+  </component>
+</project>
