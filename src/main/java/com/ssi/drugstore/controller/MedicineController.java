@@ -1,10 +1,10 @@
 package com.ssi.drugstore.controller;
 
+import com.ssi.drugstore.model.Category;
 import com.ssi.drugstore.model.HibernateUtil;
 import com.ssi.drugstore.model.Medicine;
 
 import org.hibernate.*;
-import java.util.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -32,6 +32,10 @@ public class MedicineController {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
 
+        Category category = medicine.getCategory();
+        Category newCategory = Category.getCategoryForIdentifier(category.getId());
+        medicine.setCategory(newCategory);
+
         try {
 
             transaction = session.beginTransaction();
@@ -45,7 +49,7 @@ public class MedicineController {
             session.close();
         }
 
-        return new ModelAndView("medicines", "medicines", medicines());
+        return new ModelAndView("medicines", "medicines", Medicine.medicines());
     }
 
     @RequestMapping(value = "/new")
@@ -53,6 +57,7 @@ public class MedicineController {
 
         ModelMap map = new ModelMap();
         map.put("medicine", new Medicine());
+        map.put("categories", Category.categories());
 
         return new ModelAndView("medicineForm", map);
     }
@@ -60,15 +65,19 @@ public class MedicineController {
     @RequestMapping(value = "/edit/{id}")
     public ModelAndView edit(@PathVariable String id) {
 
-        Medicine medicine = getMedicineForIdentifier(id);
+        Medicine medicine = Medicine.getMedicineForIdentifier(id);
+        medicine.setCategory(null);
+        ModelMap map = new ModelMap();
+        map.put("medicine", medicine);
+        map.put("categories", Category.categories());
 
-        return new ModelAndView("medicineForm", "medicine", medicine);
+        return new ModelAndView("medicineForm", map);
     }
 
     @RequestMapping(value = "/delete/{id}")
     public ModelAndView delete(@PathVariable String id) {
 
-        Medicine medicine = getMedicineForIdentifier(id);
+        Medicine medicine = Medicine.getMedicineForIdentifier(id);
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -94,56 +103,6 @@ public class MedicineController {
     /* Private */
 
     private ModelAndView medicineModelAndView() {
-        return new ModelAndView("medicines", "medicines", medicines());
-    }
-
-    private Medicine getMedicineForIdentifier(String id) {
-
-        int identifier = Integer.parseInt(id);
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-        Medicine medicine;
-
-        try {
-
-            transaction = session.beginTransaction();
-            medicine = (Medicine) session.get(Medicine.class, identifier);
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-
-        } finally {
-            session.close();
-        }
-
-        return medicine;
-    }
-
-    private List medicines() {
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-        List medicines = new ArrayList();
-
-        try {
-
-            transaction = session.beginTransaction();
-            medicines = session.createQuery("from Medicine").list();
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-
-        } finally {
-            session.close();
-        }
-
-        return medicines;
+        return new ModelAndView("medicines", "medicines", Medicine.medicines());
     }
 }

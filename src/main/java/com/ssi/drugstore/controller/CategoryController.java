@@ -47,7 +47,7 @@ public class CategoryController {
             session.close();
         }
 
-        return new ModelAndView("categories", "categories", categories());
+        return new ModelAndView("categories", "categories", Category.categories());
     }
 
     @RequestMapping(value = "/new")
@@ -62,7 +62,7 @@ public class CategoryController {
     @RequestMapping(value = "/edit/{id}")
     public ModelAndView edit(@PathVariable String id) {
 
-        Category medicine = getCategoryForIdentifier(id);
+        Category medicine = Category.getCategoryForIdentifier(id);
 
         return new ModelAndView("categoryForm", "category", medicine);
     }
@@ -70,7 +70,7 @@ public class CategoryController {
     @RequestMapping(value = "/delete/{id}")
     public ModelAndView delete(@PathVariable String id) {
 
-        Category medicine = getCategoryForIdentifier(id);
+        Category medicine = Category.getCategoryForIdentifier(id);
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -96,56 +96,7 @@ public class CategoryController {
     /* Private */
 
     private ModelAndView medicineModelAndView() {
-        return new ModelAndView("categories", "categories", categories());
+        return new ModelAndView("categories", "categories", Category.categories());
     }
 
-    private Category getCategoryForIdentifier(String id) {
-
-        int identifier = Integer.parseInt(id);
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-        Category category;
-
-        try {
-
-            transaction = session.beginTransaction();
-            category = (Category) session.get(Category.class, identifier);
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-
-        } finally {
-            session.close();
-        }
-
-        return category;
-    }
-
-    private List categories() {
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-        List categories = new ArrayList();
-
-        try {
-
-            transaction = session.beginTransaction();
-            categories = session.createQuery("from Category").list();
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-
-        } finally {
-            session.close();
-        }
-
-        return categories;
-    }
 }

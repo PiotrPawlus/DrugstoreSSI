@@ -9,8 +9,8 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2016-12-12.16:48:25.842</IntrospectionTimestamp>
-      <IntrospectionStateNumber>1274</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2016-12-13.11:53:56.510</IntrospectionTimestamp>
+      <IntrospectionStateNumber>1323</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -34,16 +34,16 @@
       <StateNumber>1274</StateNumber>
     </sequence>
     <sequence id="10" parent="3" name="medicine_id_seq">
-      <ObjectId>24787</ObjectId>
-      <StateNumber>1251</StateNumber>
+      <ObjectId>24821</ObjectId>
+      <StateNumber>1310</StateNumber>
     </sequence>
     <table id="11" parent="3" name="category">
       <ObjectId>24799</ObjectId>
-      <StateNumber>1274</StateNumber>
+      <StateNumber>1310</StateNumber>
     </table>
     <table id="12" parent="3" name="medicine">
-      <ObjectId>24789</ObjectId>
-      <StateNumber>1270</StateNumber>
+      <ObjectId>24823</ObjectId>
+      <StateNumber>1310</StateNumber>
     </table>
     <column id="13" parent="11" name="id">
       <Position>1</Position>
@@ -63,47 +63,85 @@
       <DataType>text|0</DataType>
       <StateNumber>1274</StateNumber>
     </column>
-    <column id="16" parent="12" name="id">
+    <index id="16" parent="11" name="category_pkey">
+      <ObjectId>24806</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="17" parent="11" name="category_pkey">
+      <ObjectId>24807</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>category_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="18" parent="12" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1251</StateNumber>
+      <StateNumber>1310</StateNumber>
       <DefaultExpression>nextval(&apos;medicine_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="17" parent="12" name="name">
+    <column id="19" parent="12" name="name">
       <Position>2</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1251</StateNumber>
+      <StateNumber>1310</StateNumber>
     </column>
-    <column id="18" parent="12" name="price">
+    <column id="20" parent="12" name="price">
       <Position>3</Position>
       <DataType>real|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1251</StateNumber>
+      <StateNumber>1310</StateNumber>
     </column>
-    <column id="19" parent="12" name="capacity">
+    <column id="21" parent="12" name="capacity">
       <Position>4</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1251</StateNumber>
+      <StateNumber>1310</StateNumber>
     </column>
-    <column id="20" parent="12" name="measure">
+    <column id="22" parent="12" name="measure">
       <Position>5</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1251</StateNumber>
+      <StateNumber>1310</StateNumber>
     </column>
-    <column id="21" parent="12" name="description">
+    <column id="23" parent="12" name="description">
       <Position>6</Position>
       <DataType>text|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1270</StateNumber>
+      <StateNumber>1310</StateNumber>
     </column>
-    <check id="22" parent="12" name="medicine_price_check">
-      <ObjectId>24793</ObjectId>
+    <column id="24" parent="12" name="category_id">
+      <Position>7</Position>
+      <DataType>integer|0</DataType>
+      <StateNumber>1323</StateNumber>
+    </column>
+    <index id="25" parent="12" name="medicine_pkey">
+      <ObjectId>24832</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="26" parent="12" name="medicine_pkey">
+      <ObjectId>24833</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>medicine_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="27" parent="12" name="medicine_category_id_fkey">
+      <ObjectId>24834</ObjectId>
+      <ColNames>category_id</ColNames>
+      <RefTableName>category</RefTableName>
+      <RefKeyName>category_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <check id="28" parent="12" name="medicine_price_check">
+      <ObjectId>24827</ObjectId>
       <ColNames>price</ColNames>
       <Predicate>price &gt; (0)::double precision</Predicate>
+    </check>
+    <check id="29" parent="12" name="medicine_capacity_check">
+      <ObjectId>24828</ObjectId>
+      <ColNames>capacity</ColNames>
+      <Predicate>capacity &gt; 0</Predicate>
     </check>
   </database-model>
 </dataSource>

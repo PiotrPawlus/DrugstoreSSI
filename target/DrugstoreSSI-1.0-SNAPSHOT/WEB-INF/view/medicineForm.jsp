@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="z" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <z:dashboard pageTitle="A simple page">
 
@@ -54,23 +55,30 @@
                                             <label for="price">Cena</label>
                                             <form:input path="price" id="price" class="form-control"/>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="description">Opis</label>
+                                            <form:input path="description" id="description" class="form-control"/>
+                                        </div>
                                     </div>
+
                                     <div class="col-xs-6">
                                         <div class="form-group">
                                             <label for="capacity">Ilość/Pojemność</label>
                                             <form:input path="capacity" id="capacity" class="form-control"/>
                                         </div>
                                         <div class="form-group">
-                                            <label for="price">Miara</label>
+                                            <label for="measure">Miara</label>
                                             <form:input path="measure" id="measure" class="form-control"/>
                                         </div>
-                                    </div>
-                                    <div class="col-xs-6">
                                         <div class="form-group">
-                                            <label for="description">Opis</label>
-                                            <form:input path="description" id="description" class="form-control"/>
+                                            <label for="category.id">Categoria</label>
+
+                                            <form:select path="category.id" id="category.id">
+                                                <form:options items="${categories}" itemValue="id" itemLabel="name" />
+                                            </form:select>
                                         </div>
                                     </div>
+
                                     <div class="col-xs-12 text-right">
                                         <input class="btn btn-success" type="submit" name="save" value="Zapisz"/>
                                     </div>

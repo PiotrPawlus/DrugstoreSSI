@@ -1,6 +1,12 @@
 package com.ssi.drugstore.model;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by piotrpawlus on 12/12/2016.
@@ -29,6 +35,10 @@ public class Medicine {
 
     @Column(name = "description")
     private String description;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     public int getId() {
         return id;
@@ -78,9 +88,62 @@ public class Medicine {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "Medicine [id =" + id + ", name = " + name + ", price = " + price +
-                ", capacity = " + capacity + ", measure = " + measure + "]\n";
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+
+        this.category = category;
+    }
+
+    public static Medicine getMedicineForIdentifier(String id) {
+
+        int identifier = Integer.parseInt(id);
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        Medicine medicine;
+
+        try {
+
+            transaction = session.beginTransaction();
+            medicine = (Medicine) session.get(Medicine.class, identifier);
+            transaction.commit();
+
+        } catch (HibernateException e) {
+
+            if (transaction != null) transaction.rollback();
+            throw e;
+
+        } finally {
+            session.close();
+        }
+
+        return medicine;
+    }
+
+    public static List medicines() {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        List<Medicine> medicines = new ArrayList();
+
+        try {
+
+            transaction = session.beginTransaction();
+            medicines = session.createQuery("from Medicine").list();
+            transaction.commit();
+
+        } catch (HibernateException e) {
+
+            if (transaction != null) transaction.rollback();
+            throw e;
+
+        } finally {
+            session.close();
+        }
+
+        return medicines;
     }
 }

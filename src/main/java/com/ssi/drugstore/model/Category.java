@@ -1,6 +1,11 @@
 package com.ssi.drugstore.model;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import javax.persistence.*;
+import java.util.*;
 
 /**
  * Created by piotrpawlus on 12/12/2016.
@@ -20,6 +25,10 @@ public class Category {
 
     @Column(name = "description")
     private String description;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Set<Medicine> medicines = new HashSet<Medicine>();
 
     public int getId() {
         return id;
@@ -43,5 +52,68 @@ public class Category {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Medicine> getMedicines() {
+        return medicines;
+    }
+
+    public void setMedicines(Set<Medicine> medicines) {
+        this.medicines = medicines;
+    }
+
+    public static Category getCategoryForIdentifier(String id) {
+
+        int identifier = Integer.parseInt(id);
+
+        return getCategoryForIdentifier(identifier);
+    }
+
+    public static Category getCategoryForIdentifier(int id) {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        Category category;
+
+        try {
+
+            transaction = session.beginTransaction();
+            category = (Category) session.get(Category.class, id);
+            transaction.commit();
+
+        } catch (HibernateException e) {
+
+            if (transaction != null) transaction.rollback();
+            throw e;
+
+        } finally {
+            session.close();
+        }
+
+        return category;
+    }
+
+    public static List<Category> categories() {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        List categories = new ArrayList();
+
+        try {
+
+            transaction = session.beginTransaction();
+            categories = (List<Category>) session.createQuery("from Category").list();
+            transaction.commit();
+
+        } catch (HibernateException e) {
+
+            if (transaction != null) transaction.rollback();
+            throw e;
+
+        } finally {
+            session.close();
+        }
+
+        return categories;
     }
 }
