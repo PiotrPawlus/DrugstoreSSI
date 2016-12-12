@@ -21,10 +21,6 @@
                     <p>Lista użytkowników</p>
                     <div class="clearfix"></div>
                 </div>
-                <div class="dsb-title-single dsb-title-2">
-                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    <p>Witaj ponownie, <span>Admin!</span> Twoje ostatnie logowanie było dnia 07-09-2016.</p>
-                </div>
                 <div class="dsb-title-single dsb-title-3">
                     <input class="form-control" type="search" placeholder="wyszukaj">
                 </div>
@@ -75,8 +71,8 @@
                                             <td class="numeric">10.02.2015</td>
                                             <td class="numeric"><c:out value="${user.role}"/></td>
                                             <td>
-                                                <a href="/dashboard/users/edit/${user.id}" class="btn btn-primary">Edytuj</a>
-                                                <a href="/dashboard/users/delete/${user.id}" class="btn btn-danger">Usuń</a>
+                                                <a href="/dashboard/users/edit/${user.id}" class="btn btn-primary btn-sm">Edytuj</a>
+                                                <a href="/dashboard/users/delete/${user.id}" class="btn btn-danger btn-sm">Usuń</a>
                                             </td>
                                         </tr>
                                     </c:forEach>
