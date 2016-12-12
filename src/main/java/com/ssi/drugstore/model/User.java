@@ -1,19 +1,17 @@
 package com.ssi.drugstore.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Column;
-import javax.persistence.Table;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by piotrpawlus on 11/12/2016.
  */
 @Entity
-@Table(name = "users")
+@Table(name = "user_account")
 public class User {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
+    @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", initialValue = 1, allocationSize = 1)
     @Column(name = "id")
     private int id;
 
@@ -23,11 +21,18 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "profile_id")
-    private int profileID;
+    @Column(name = "role")
+    private String role;
 
-    @Column(name = "position_id")
-    private int positionID;
+    public User() {
+    }
+
+    public User(int id, String email, String password, String role) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     public int getId() {
         return id;
@@ -53,19 +58,11 @@ public class User {
         this.password = password;
     }
 
-    public int getProfileID() {
-        return profileID;
+    public String getRole() {
+        return role;
     }
 
-    public void setProfileID(int profileID) {
-        this.profileID = profileID;
-    }
-
-    public int getPositionID() {
-        return positionID;
-    }
-
-    public void setPositionID(int positionID) {
-        this.positionID = positionID;
+    public void setRole(String role) {
+        this.role = role;
     }
 }
