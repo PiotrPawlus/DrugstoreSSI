@@ -75,7 +75,7 @@
                             <ul>
                                 <li><a href="/dashboard/notifications"><i class="fa fa-inbox" aria-hidden="true"></i>Notification</a></li>
                                 <li><a href="/dashboard/orders"><i class="fa fa-telegram" aria-hidden="true"></i>Orders</a></li>
-                                <li><a href="/dashboard/"><i class="fa fa-bookmark" aria-hidden="true"></i>Categories</a></li>
+                                <li><a href="/dashboard/categories"><i class="fa fa-bookmark" aria-hidden="true"></i>Categories</a></li>
                                 <li><a href="/dashboard/medicines"><i class="fa fa-medkit" aria-hidden="true"></i>Medicines Warehouse</a></li>
                             </ul>
                         </div>

@@ -16,7 +16,7 @@
             <div class="dsb-title">
                 <div class="dsb-title-single dsb-title-1">
                     <i class="fa fa-address-book" aria-hidden="true"></i>
-                    <p>LIST OF MEDICINES</p>
+                    <p>LISTA LEKÓW</p>
                     <div class="clearfix"></div>
                 </div>
                 <div class="dsb-title-single dsb-title-3">
@@ -28,30 +28,30 @@
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                 <p>Home</p>
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
-                <p>Pharmacy System</p>
+                <p>System Apteczny</p>
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
-                <p>Medicines</p>
+                <p>Leki</p>
             </div>
 
 
             <div class="dsb-content">
                 <div class="dsb-content-inner row">
                     <div class="col-xs-12">
-                        <a href="/dashboard/medicines/new" class="btn btn-success">Add Medicine</a>
+                        <a href="/dashboard/medicines/new" class="btn btn-success">Dodaj lek</a>
                         <div class="content-panel">
                             <div class="content-panel-header">
-                                <h4>Medicines</h4>
+                                <h4>Leki</h4>
                             </div>
                             <div class="content-panel-body">
                                 <table class="table table-bordered table-striped cf">
                                     <thead class="cf">
                                         <tr>
                                             <th>ID</th>
-                                            <th>Name</th>
-                                            <th class="numeric">Measure</th>
-                                            <th class="numeric">Price</th>
-                                            <th>Description</th>
-                                            <th>Actions</th>
+                                            <th>Nazwa</th>
+                                            <th class="numeric">Ilość/Pojemność</th>
+                                            <th class="numeric">Cena</th>
+                                            <th>Opis</th>
+                                            <th>Akcje</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -65,8 +65,8 @@
                                             <td class="numeric"><c:out value="${medicine.price}"/>PLN</td>
                                             <td><c:out value="${medicine.description}"/></td>
                                             <td>
-                                                <a href="/dashboard/medicines/edit/${medicine.id}" class="btn btn-primary">Edit</a>
-                                                <a href="/dashboard/medicines/delete/${medicine.id}" class="btn btn-danger">Delete</a>
+                                                <a href="/dashboard/medicines/edit/${medicine.id}" class="btn btn-primary">Edytuj</a>
+                                                <a href="/dashboard/medicines/delete/${medicine.id}" class="btn btn-danger">Usuń</a>
                                             </td>
                                         </tr>
 
