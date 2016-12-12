@@ -8,6 +8,8 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="z" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <z:dashboard pageTitle="A simple page">
 
@@ -37,53 +39,7 @@
                 <p>Lista użytkowników</p>
             </div>
 
-            <div class="dsb-content">
-                <div class="dsb-content-inner row">
-                    <div class="col-xs-12">
-                        <div class="content-panel">
-                            <div class="content-panel-header">
-                                <h4>Dodaj nowego użytkownika</h4>
-                            </div>
-                            <div class="content-panel-body">
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <label for="name">Imię i nazwisko</label>
-                                        <input type="text" id="name" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="adress">Adres zamieszkania</label>
-                                        <input type="password" id="adress" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="adress">Stanowisko</label>
-                                        <select name="" id="" class="form-control">
-                                            <option value="10">Administrator</option>
-                                            <option value="20">Technik</option>
-                                            <option value="30">Pracownik zaw.</option>
-                                        </select>
-                                    </div>
-
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <label for="data1">Data urodzenia</label>
-                                        <input type="email" id="data1" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="data2">Data zatrudnienia</label>
-                                        <input type="password" id="exampleInputPassword1" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 text-right">
-                                    <button class="btn btn-success" type="submit">Dodaj użytkownika</button>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
+            <jsp:include page="usersForm.jsp"/>
 
 
             <div class="dsb-content">
@@ -104,7 +60,7 @@
                                         <th class="numeric">Data urodzenia</th>
                                         <th class="numeric">Data zatrudnienia</th>
                                         <th class="numeric">Stanowisko</th>
-                                        <th class="numeric">Profil</th>
+                                        <th class="numeric">Akcje</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -117,9 +73,11 @@
                                             <td class="numeric">Warszawska 129, 31-490 Kraków</td>
                                             <td class="numeric">05.11.1983</td>
                                             <td class="numeric">10.02.2015</td>
-                                            <td class="numeric"><c:out value="${user.positionID}"/></td>
-                                            <td class="numeric"><c:out value="${user.profileID}"/></td>
-
+                                            <td class="numeric"><c:out value="${user.role}"/></td>
+                                            <td>
+                                                <a href="/dashboard/users/edit/${user.id}" class="btn btn-primary">Edytuj</a>
+                                                <a href="/dashboard/users/delete/${user.id}" class="btn btn-danger">Usuń</a>
+                                            </td>
                                         </tr>
                                     </c:forEach>
 
