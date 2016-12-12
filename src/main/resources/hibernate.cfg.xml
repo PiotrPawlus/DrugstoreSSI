@@ -8,7 +8,7 @@
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/drugstore</property>
     <property name="hibernate.connection.username">drugstore_superuser</property>
     <property name="hibernate.connection.password">drugstore1234</property>
-    <mapping class="com.ssi.drugstore.model.User"/>
+    <mapping class="com.ssi.drugstore.model.Medicine"/>
 
   </session-factory>
 </hibernate-configuration>

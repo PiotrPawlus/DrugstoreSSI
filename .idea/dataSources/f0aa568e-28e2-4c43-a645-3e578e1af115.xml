@@ -9,8 +9,8 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2016-12-12.12:32:53.313</IntrospectionTimestamp>
-      <IntrospectionStateNumber>1229</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2016-12-12.16:40:58.613</IntrospectionTimestamp>
+      <IntrospectionStateNumber>1274</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -30,398 +30,80 @@
       <ObjectId>12381</ObjectId>
     </schema>
     <sequence id="9" parent="3" name="category_id_seq">
-      <ObjectId>24721</ObjectId>
-      <StateNumber>1202</StateNumber>
-      <SequenceIdentity>1</SequenceIdentity>
+      <ObjectId>24797</ObjectId>
+      <StateNumber>1274</StateNumber>
     </sequence>
-    <sequence id="10" parent="3" name="drug_id_seq">
-      <ObjectId>24732</ObjectId>
-      <StateNumber>1203</StateNumber>
-      <SequenceIdentity>1</SequenceIdentity>
+    <sequence id="10" parent="3" name="medicine_id_seq">
+      <ObjectId>24787</ObjectId>
+      <StateNumber>1251</StateNumber>
     </sequence>
-    <sequence id="11" parent="3" name="position_id_seq">
-      <ObjectId>24586</ObjectId>
-      <StateNumber>1186</StateNumber>
-      <SequenceIdentity>1</SequenceIdentity>
-    </sequence>
-    <sequence id="12" parent="3" name="profile_id_seq">
-      <ObjectId>24597</ObjectId>
-      <StateNumber>1187</StateNumber>
-      <SequenceIdentity>1</SequenceIdentity>
-    </sequence>
-    <sequence id="13" parent="3" name="sale_id_seq">
-      <ObjectId>24749</ObjectId>
-      <StateNumber>1204</StateNumber>
-      <SequenceIdentity>1</SequenceIdentity>
-    </sequence>
-    <sequence id="14" parent="3" name="sale_item_id_seq">
-      <ObjectId>24757</ObjectId>
-      <StateNumber>1205</StateNumber>
-      <SequenceIdentity>1</SequenceIdentity>
-    </sequence>
-    <sequence id="15" parent="3" name="users_id_seq">
-      <ObjectId>24693</ObjectId>
-      <StateNumber>1199</StateNumber>
-      <SequenceIdentity>1</SequenceIdentity>
-    </sequence>
-    <table id="16" parent="3" name="category">
-      <ObjectId>24723</ObjectId>
-      <StateNumber>1203</StateNumber>
+    <table id="11" parent="3" name="category">
+      <ObjectId>24799</ObjectId>
+      <StateNumber>1274</StateNumber>
     </table>
-    <table id="17" parent="3" name="drug">
-      <ObjectId>24734</ObjectId>
-      <StateNumber>1210</StateNumber>
+    <table id="12" parent="3" name="medicine">
+      <ObjectId>24789</ObjectId>
+      <StateNumber>1270</StateNumber>
     </table>
-    <table id="18" parent="3" name="position">
-      <ObjectId>24588</ObjectId>
-      <StateNumber>1226</StateNumber>
-    </table>
-    <table id="19" parent="3" name="profile">
-      <ObjectId>24599</ObjectId>
-      <StateNumber>1216</StateNumber>
-    </table>
-    <table id="20" parent="3" name="sale">
-      <ObjectId>24751</ObjectId>
-      <StateNumber>1205</StateNumber>
-    </table>
-    <table id="21" parent="3" name="sale_item">
-      <ObjectId>24759</ObjectId>
-      <StateNumber>1205</StateNumber>
-    </table>
-    <table id="22" parent="3" name="users">
-      <ObjectId>24695</ObjectId>
-      <StateNumber>1223</StateNumber>
-    </table>
-    <column id="23" parent="16" name="id">
+    <column id="13" parent="11" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1202</StateNumber>
+      <StateNumber>1274</StateNumber>
       <DefaultExpression>nextval(&apos;category_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="24" parent="16" name="name">
+    <column id="14" parent="11" name="name">
       <Position>2</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1202</StateNumber>
+      <StateNumber>1274</StateNumber>
     </column>
-    <index id="25" parent="16" name="category_pkey">
-      <ObjectId>24730</ObjectId>
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="26" parent="16" name="category_pkey">
-      <ObjectId>24731</ObjectId>
-      <ColNames>id</ColNames>
-      <UnderlyingIndexName>category_pkey</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <column id="27" parent="17" name="id">
-      <Position>1</Position>
-      <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1203</StateNumber>
-      <DefaultExpression>nextval(&apos;drug_id_seq&apos;::regclass)</DefaultExpression>
-    </column>
-    <column id="28" parent="17" name="name">
-      <Position>2</Position>
-      <DataType>text|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1203</StateNumber>
-    </column>
-    <column id="29" parent="17" name="accepted_at">
-      <Position>3</Position>
-      <DataType>date|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1203</StateNumber>
-    </column>
-    <column id="30" parent="17" name="expired_at">
-      <Position>4</Position>
-      <DataType>date|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1203</StateNumber>
-    </column>
-    <column id="31" parent="17" name="amount">
-      <Position>5</Position>
-      <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1203</StateNumber>
-    </column>
-    <column id="32" parent="17" name="price">
-      <Position>6</Position>
-      <DataType>real|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1203</StateNumber>
-    </column>
-    <column id="33" parent="17" name="category_id">
-      <Position>7</Position>
-      <DataType>integer|0</DataType>
-      <StateNumber>1203</StateNumber>
-    </column>
-    <column id="34" parent="17" name="serial_number">
-      <Position>8</Position>
-      <DataType>text|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1210</StateNumber>
-    </column>
-    <index id="35" parent="17" name="drug_pkey">
-      <ObjectId>24742</ObjectId>
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="36" parent="17" name="drug_pkey">
-      <ObjectId>24743</ObjectId>
-      <ColNames>id</ColNames>
-      <UnderlyingIndexName>drug_pkey</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="37" parent="17" name="drug_category_id_fkey">
-      <ObjectId>24744</ObjectId>
-      <ColNames>category_id</ColNames>
-      <RefTableName>category</RefTableName>
-      <RefKeyName>category_pkey</RefKeyName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <check id="38" parent="17" name="drug_amount_check">
-      <ObjectId>24738</ObjectId>
-      <ColNames>amount</ColNames>
-      <Predicate>amount &gt; 0</Predicate>
-    </check>
-    <column id="39" parent="18" name="id">
-      <Position>1</Position>
-      <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1186</StateNumber>
-      <DefaultExpression>nextval(&apos;position_id_seq&apos;::regclass)</DefaultExpression>
-    </column>
-    <column id="40" parent="18" name="name">
-      <Position>2</Position>
-      <DataType>text|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1186</StateNumber>
-    </column>
-    <column id="41" parent="18" name="role">
-      <Position>4</Position>
-      <DataType>boolean|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1226</StateNumber>
-    </column>
-    <index id="42" parent="18" name="position_pkey">
-      <ObjectId>24595</ObjectId>
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="43" parent="18" name="position_pkey">
-      <ObjectId>24596</ObjectId>
-      <ColNames>id</ColNames>
-      <UnderlyingIndexName>position_pkey</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <column id="44" parent="19" name="id">
-      <Position>1</Position>
-      <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1187</StateNumber>
-      <DefaultExpression>nextval(&apos;profile_id_seq&apos;::regclass)</DefaultExpression>
-    </column>
-    <column id="45" parent="19" name="name">
-      <Position>2</Position>
-      <DataType>text|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1187</StateNumber>
-    </column>
-    <column id="46" parent="19" name="surname">
+    <column id="15" parent="11" name="description">
       <Position>3</Position>
       <DataType>text|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1187</StateNumber>
+      <StateNumber>1274</StateNumber>
     </column>
-    <column id="47" parent="19" name="birthdate">
-      <Position>4</Position>
-      <DataType>date|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1187</StateNumber>
-    </column>
-    <column id="48" parent="19" name="phone">
-      <Position>5</Position>
-      <DataType>text|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1187</StateNumber>
-    </column>
-    <column id="49" parent="19" name="sex">
-      <Position>6</Position>
-      <DataType>boolean|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1187</StateNumber>
-    </column>
-    <column id="50" parent="19" name="user_id">
-      <Position>7</Position>
-      <DataType>integer|0</DataType>
-      <StateNumber>1200</StateNumber>
-    </column>
-    <index id="51" parent="19" name="profile_pkey">
-      <ObjectId>24606</ObjectId>
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="52" parent="19" name="profile_pkey">
-      <ObjectId>24607</ObjectId>
-      <ColNames>id</ColNames>
-      <UnderlyingIndexName>profile_pkey</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="53" parent="19" name="user_id">
-      <ObjectId>24716</ObjectId>
-      <ColNames>user_id</ColNames>
-      <RefTableName>users</RefTableName>
-      <RefKeyName>users_pkey</RefKeyName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <column id="54" parent="20" name="id">
+    <column id="16" parent="12" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1204</StateNumber>
-      <DefaultExpression>nextval(&apos;sale_id_seq&apos;::regclass)</DefaultExpression>
+      <StateNumber>1251</StateNumber>
+      <DefaultExpression>nextval(&apos;medicine_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="55" parent="20" name="sold_at">
+    <column id="17" parent="12" name="name">
       <Position>2</Position>
-      <DataType>date|0</DataType>
+      <DataType>text|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1204</StateNumber>
+      <StateNumber>1251</StateNumber>
     </column>
-    <column id="56" parent="20" name="price">
+    <column id="18" parent="12" name="price">
       <Position>3</Position>
       <DataType>real|0</DataType>
-      <StateNumber>1204</StateNumber>
-    </column>
-    <index id="57" parent="20" name="sale_pkey">
-      <ObjectId>24755</ObjectId>
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="58" parent="20" name="sale_pkey">
-      <ObjectId>24756</ObjectId>
-      <ColNames>id</ColNames>
-      <UnderlyingIndexName>sale_pkey</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <column id="59" parent="21" name="id">
-      <Position>1</Position>
-      <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1205</StateNumber>
-      <DefaultExpression>nextval(&apos;sale_item_id_seq&apos;::regclass)</DefaultExpression>
+      <StateNumber>1251</StateNumber>
     </column>
-    <column id="60" parent="21" name="drug_amount">
-      <Position>2</Position>
-      <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1205</StateNumber>
-    </column>
-    <column id="61" parent="21" name="drug_id">
-      <Position>3</Position>
-      <DataType>integer|0</DataType>
-      <StateNumber>1205</StateNumber>
-    </column>
-    <column id="62" parent="21" name="sale_id">
+    <column id="19" parent="12" name="capacity">
       <Position>4</Position>
       <DataType>integer|0</DataType>
-      <StateNumber>1205</StateNumber>
-    </column>
-    <index id="63" parent="21" name="sale_item_pkey">
-      <ObjectId>24764</ObjectId>
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="64" parent="21" name="sale_item_pkey">
-      <ObjectId>24765</ObjectId>
-      <ColNames>id</ColNames>
-      <UnderlyingIndexName>sale_item_pkey</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="65" parent="21" name="sale_item_drug_id_fkey">
-      <ObjectId>24766</ObjectId>
-      <ColNames>drug_id</ColNames>
-      <RefTableName>drug</RefTableName>
-      <RefKeyName>drug_pkey</RefKeyName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="66" parent="21" name="sale_item_sale_id_fkey">
-      <ObjectId>24771</ObjectId>
-      <ColNames>sale_id</ColNames>
-      <RefTableName>sale</RefTableName>
-      <RefKeyName>sale_pkey</RefKeyName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <check id="67" parent="21" name="sale_item_drug_amount_check">
-      <ObjectId>24763</ObjectId>
-      <ColNames>drug_amount</ColNames>
-      <Predicate>drug_amount &gt; 0</Predicate>
-    </check>
-    <column id="68" parent="22" name="id">
-      <Position>1</Position>
-      <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1199</StateNumber>
-      <DefaultExpression>nextval(&apos;users_id_seq&apos;::regclass)</DefaultExpression>
+      <StateNumber>1251</StateNumber>
     </column>
-    <column id="69" parent="22" name="email">
-      <Position>2</Position>
-      <DataType>text|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1199</StateNumber>
-    </column>
-    <column id="70" parent="22" name="profile_id">
-      <Position>4</Position>
-      <DataType>integer|0</DataType>
-      <StateNumber>1199</StateNumber>
-    </column>
-    <column id="71" parent="22" name="position_id">
+    <column id="20" parent="12" name="measure">
       <Position>5</Position>
-      <DataType>integer|0</DataType>
-      <StateNumber>1199</StateNumber>
-    </column>
-    <column id="72" parent="22" name="password">
-      <Position>7</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1223</StateNumber>
+      <StateNumber>1251</StateNumber>
     </column>
-    <index id="73" parent="22" name="users_pkey">
-      <ObjectId>24702</ObjectId>
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <index id="74" parent="22" name="users_email_key">
-      <ObjectId>24704</ObjectId>
-      <ColNames>email</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="75" parent="22" name="users_pkey">
-      <ObjectId>24703</ObjectId>
-      <ColNames>id</ColNames>
-      <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <key id="76" parent="22" name="users_email_key">
-      <ObjectId>24705</ObjectId>
-      <ColNames>email</ColNames>
-      <UnderlyingIndexName>users_email_key</UnderlyingIndexName>
-    </key>
-    <foreign-key id="77" parent="22" name="users_profile_id_fkey">
-      <ObjectId>24706</ObjectId>
-      <ColNames>profile_id</ColNames>
-      <RefTableName>profile</RefTableName>
-      <RefKeyName>profile_pkey</RefKeyName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="78" parent="22" name="users_position_id_fkey">
-      <ObjectId>24711</ObjectId>
-      <ColNames>position_id</ColNames>
-      <RefTableName>position</RefTableName>
-      <RefKeyName>position_pkey</RefKeyName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
+    <column id="21" parent="12" name="description">
+      <Position>6</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1270</StateNumber>
+    </column>
+    <check id="22" parent="12" name="medicine_price_check">
+      <ObjectId>24793</ObjectId>
+      <ColNames>price</ColNames>
+      <Predicate>price &gt; (0)::double precision</Predicate>
+    </check>
   </database-model>
 </dataSource>

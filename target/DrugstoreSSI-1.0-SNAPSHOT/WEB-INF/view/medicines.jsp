@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="z" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <z:dashboard pageTitle="A simple page">
 
@@ -15,12 +16,8 @@
             <div class="dsb-title">
                 <div class="dsb-title-single dsb-title-1">
                     <i class="fa fa-address-book" aria-hidden="true"></i>
-                    <p>Lista użytkowników</p>
+                    <p>LIST OF MEDICINES</p>
                     <div class="clearfix"></div>
-                </div>
-                <div class="dsb-title-single dsb-title-2">
-                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    <p>Witaj ponownie, <span>Admin!</span> Twoje ostatnie logowanie było dnia 07-09-2016.</p>
                 </div>
                 <div class="dsb-title-single dsb-title-3">
                     <input class="form-control" type="search" placeholder="wyszukaj">
@@ -31,48 +28,49 @@
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                 <p>Home</p>
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
-                <p>Funkcje admina</p>
+                <p>Pharmacy System</p>
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
-                <p>Lista użytkowników</p>
+                <p>Medicines</p>
             </div>
 
 
             <div class="dsb-content">
                 <div class="dsb-content-inner row">
                     <div class="col-xs-12">
+                        <a href="/dashboard/medicines/new" class="btn btn-success">Add Medicine</a>
                         <div class="content-panel">
                             <div class="content-panel-header">
-                                <h4>Lista leków</h4>
+                                <h4>Medicines</h4>
                             </div>
                             <div class="content-panel-body">
                                 <table class="table table-bordered table-striped cf">
                                     <thead class="cf">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Imię i nazwisko</th>
-                                        <th class="numeric">Adres zamieszkania</th>
-                                        <th class="numeric">Data urodzenia</th>
-                                        <th class="numeric">Data zatrudnienia</th>
-                                        <th class="numeric">Stanowisko</th>
-                                    </tr>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th class="numeric">Measure</th>
+                                            <th class="numeric">Price</th>
+                                            <th>Description</th>
+                                            <th>Actions</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>12345</td>
-                                        <td>Jan Kowalski</td>
-                                        <td class="numeric">Warszawska 129, 31-490 Kraków</td>
-                                        <td class="numeric">05.11.1983</td>
-                                        <td class="numeric">10.02.2015</td>
-                                        <td class="numeric">Technik</td>
-                                    </tr>
-                                    <tr>
-                                        <td>12345</td>
-                                        <td>Jan Kowalski</td>
-                                        <td class="numeric">Warszawska 129, 31-490 Kraków</td>
-                                        <td class="numeric">05.11.1983</td>
-                                        <td class="numeric">10.02.2015</td>
-                                        <td class="numeric">Technik</td>
-                                    </tr>
+
+                                    <c:forEach items="${medicines}" var="medicine">
+
+                                        <tr>
+                                            <td><c:out value="${medicine.id}"/></td>
+                                            <td><c:out value="${medicine.name}"/></td>
+                                            <td class="numeric"><c:out value="${medicine.capacity} ${medicine.measure}"/></td>
+                                            <td class="numeric"><c:out value="${medicine.price}"/>PLN</td>
+                                            <td><c:out value="${medicine.description}"/></td>
+                                            <td>
+                                                <a href="/dashboard/medicines/edit/${medicine.id}" class="btn btn-primary">Edit</a>
+                                                <a href="/dashboard/medicines/delete/${medicine.id}" class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
