@@ -6,7 +6,9 @@ import org.hibernate.Transaction;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by piotrpawlus on 12/12/2016.
@@ -43,6 +45,10 @@ public class Medicine {
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "manufacturer_id")
     private Manufacturer manufacturer;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "medicine_id")
+    private Set<Series> series = new HashSet<Series>();
 
     public int getId() {
         return id;
@@ -107,6 +113,14 @@ public class Medicine {
 
     public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+    public Set<Series> getSeries() {
+        return series;
+    }
+
+    public void setSeries(Set<Series> series) {
+        this.series = series;
     }
 
     /* Static */

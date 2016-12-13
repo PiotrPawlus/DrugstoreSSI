@@ -11,6 +11,7 @@
     <mapping class="com.ssi.drugstore.model.Medicine"/>
     <mapping class="com.ssi.drugstore.model.Category"/>
     <mapping class="com.ssi.drugstore.model.Manufacturer"/>
+    <mapping class="com.ssi.drugstore.model.Series"/>
 
   </session-factory>
 </hibernate-configuration>

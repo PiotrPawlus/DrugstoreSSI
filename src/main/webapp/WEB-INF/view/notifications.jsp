@@ -20,7 +20,6 @@
                 </div>
                 <div class="dsb-title-single dsb-title-2">
                     <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    <p>Witaj ponownie, <span>Admin!</span> Twoje ostatnie logowanie było dnia 07-09-2016.</p>
                 </div>
                 <div class="dsb-title-single dsb-title-3">
                     <input class="form-control" type="search" placeholder="wyszukaj">

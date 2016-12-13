@@ -67,6 +67,7 @@
                                             <td>
                                                 <a href="/dashboard/medicines/edit/${medicine.id}" class="btn btn-primary">Edytuj</a>
                                                 <a href="/dashboard/medicines/delete/${medicine.id}" class="btn btn-danger">Usuń</a>
+                                                <a href="/dashboard/medicines/series/${medicine.id}" class="btn btn-success">Dodaj nowy produkt</a>
                                             </td>
                                         </tr>
 

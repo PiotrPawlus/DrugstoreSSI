@@ -40,6 +40,7 @@
           <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.8.9" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.21" />
           <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.21" />
+          <element id="library" level="project" name="Maven: javax.validation:validation-api:1.1.0.Final" />
         </element>
       </element>
       <element id="directory" name="META-INF">

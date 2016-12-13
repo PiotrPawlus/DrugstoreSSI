@@ -1,9 +1,6 @@
 package com.ssi.drugstore.controller;
 
-import com.ssi.drugstore.model.Category;
-import com.ssi.drugstore.model.HibernateUtil;
-import com.ssi.drugstore.model.Manufacturer;
-import com.ssi.drugstore.model.Medicine;
+import com.ssi.drugstore.model.*;
 
 import org.hibernate.*;
 
@@ -14,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * Created by piotrpawlus on 11/12/2016.
@@ -103,6 +102,19 @@ public class MedicineController {
         }
 
         return "redirect:/dashboard/medicines";
+    }
+
+    @RequestMapping(value = "/series/{id}")
+    public ModelAndView seriesIndex(@PathVariable String id) {
+
+        Medicine medicine = Medicine.getForIdentifier(id);
+        List<Series> seriesList = Series.allForMedicineId(id);
+
+        ModelMap map = new ModelMap();
+        map.put("seriesList", seriesList);
+        map.put("medicine", medicine);
+
+        return new ModelAndView("series", map);
     }
 
     /* Private */
