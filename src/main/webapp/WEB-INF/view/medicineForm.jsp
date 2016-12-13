@@ -17,7 +17,7 @@
             <div class="dsb-title">
                 <div class="dsb-title-single dsb-title-1">
                     <i class="fa fa-address-book" aria-hidden="true"></i>
-                    <p>DODAJ NOWY LEK</p>
+                    <p>LEK</p>
                     <div class="clearfix"></div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                 <p>Leki</p>
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
-                <p>Nowy lek</p>
+                <p>Lek</p>
             </div>
 
             <div class="dsb-content">

@@ -33,7 +33,7 @@ public class MedicineController {
         Transaction transaction = null;
 
         Category category = medicine.getCategory();
-        Category newCategory = Category.getCategoryForIdentifier(category.getId());
+        Category newCategory = Category.getForIdentifier(category.getId());
         medicine.setCategory(newCategory);
 
         try {
@@ -49,7 +49,7 @@ public class MedicineController {
             session.close();
         }
 
-        return new ModelAndView("medicines", "medicines", Medicine.medicines());
+        return new ModelAndView("medicines", "medicines", Medicine.all());
     }
 
     @RequestMapping(value = "/new")
@@ -57,7 +57,7 @@ public class MedicineController {
 
         ModelMap map = new ModelMap();
         map.put("medicine", new Medicine());
-        map.put("categories", Category.categories());
+        map.put("categories", Category.all());
 
         return new ModelAndView("medicineForm", map);
     }
@@ -65,19 +65,20 @@ public class MedicineController {
     @RequestMapping(value = "/edit/{id}")
     public ModelAndView edit(@PathVariable String id) {
 
-        Medicine medicine = Medicine.getMedicineForIdentifier(id);
+        Medicine medicine = Medicine.getForIdentifier(id);
         medicine.setCategory(null);
+
         ModelMap map = new ModelMap();
         map.put("medicine", medicine);
-        map.put("categories", Category.categories());
+        map.put("categories", Category.all());
 
         return new ModelAndView("medicineForm", map);
     }
 
     @RequestMapping(value = "/delete/{id}")
-    public ModelAndView delete(@PathVariable String id) {
+    public String delete(@PathVariable String id) {
 
-        Medicine medicine = Medicine.getMedicineForIdentifier(id);
+        Medicine medicine = Medicine.getForIdentifier(id);
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -97,12 +98,12 @@ public class MedicineController {
             session.close();
         }
 
-        return medicineModelAndView();
+        return "redirect:/dashboard/medicines";
     }
 
     /* Private */
 
     private ModelAndView medicineModelAndView() {
-        return new ModelAndView("medicines", "medicines", Medicine.medicines());
+        return new ModelAndView("medicines", "medicines", Medicine.all());
     }
 }

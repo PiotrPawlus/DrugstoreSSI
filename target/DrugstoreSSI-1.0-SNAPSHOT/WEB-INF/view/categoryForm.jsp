@@ -16,7 +16,7 @@
             <div class="dsb-title">
                 <div class="dsb-title-single dsb-title-1">
                     <i class="fa fa-address-book" aria-hidden="true"></i>
-                    <p>DODAJ NOWĄ KATEGORIE LEKÓW</p>
+                    <p>KATEGORIA LEKÓW</p>
                     <div class="clearfix"></div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                 <p>Kategorie</p>
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
-                <p>Nowa Kategoria</p>
+                <p>Kategoria Leków</p>
             </div>
 
             <div class="dsb-content">

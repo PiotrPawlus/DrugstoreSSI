@@ -1,4 +1,5 @@
 <%@ attribute name="pageTitle" required="true" type="java.lang.String" %>
+<%@ tag pageEncoding="UTF-8"%>
 <%@ tag body-content="scriptless" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
@@ -39,14 +40,10 @@
                             </div>
                             <div class="pull-left navbar-info-single navbar-weather">
                                 <i class="fa fa-bolt pull-left" aria-hidden="true"></i>
-                                <p class="pull-left">  Cracow  6* 20km/h</p>
+                                <p class="pull-left">  Kraków  6* 20km/h</p>
                             </div>
                         </div>
                         <div class="clearfix"></div>
-                    </div>
-                    <div class="navbar-option-single navbar-settings">
-                        <p>Witaj, Admin <i class="fa fa-caret-down" aria-hidden="true"></i></p>
-                        <a href="/dashboard/sales"><p><i class="fa fa-cog" aria-hidden="true"></i>Settings</p></a>
                     </div>
                 </div>
             </nav>
@@ -54,39 +51,46 @@
                 <div class="skin-part">
                     <div class="sidebar">
                         <div class="sidebar-logo">
-                            <h2>Pharmacy<span>V0.9</span></h2>
+                            <h2>Apteka<span>V0.9</span></h2>
                         </div>
 
                         <div class="sidebar-option">
                             <div class="widget-menu">
-                                <span class="widget-menu-title">Customer service</span>
+                                <span class="widget-menu-title">Obsługa klienta</span>
                             </div>
                             <ul>
-                                <li><a href="/dashboard/sales"><i class="fa fa-cart-plus" aria-hidden="true"></i>Sales</a></li>
-                                <li><a href="/dashboard/lexicon"><i class="fa fa-book" aria-hidden="true"></i>Medicines Lexicon</a></li>
+                                <li><a href="/dashboard/sales"><i class="fa fa-cart-plus" aria-hidden="true"></i>Sprzedaż</a></li>
+                                <li><a href="/dashboard/lexicon"><i class="fa fa-book" aria-hidden="true"></i>Leksykon leków</a></li>
                             </ul>
                         </div>
 
 
                         <div class="sidebar-option">
                             <div class="widget-menu">
-                                <span class="widget-menu-title">Pharmacy System</span>
+                                <span class="widget-menu-title">System Apteczny</span>
                             </div>
                             <ul>
-                                <li><a href="/dashboard/notifications"><i class="fa fa-inbox" aria-hidden="true"></i>Notification</a></li>
-                                <li><a href="/dashboard/orders"><i class="fa fa-telegram" aria-hidden="true"></i>Orders</a></li>
-                                <li><a href="/dashboard/categories"><i class="fa fa-bookmark" aria-hidden="true"></i>Categories</a></li>
-                                <li><a href="/dashboard/medicines"><i class="fa fa-medkit" aria-hidden="true"></i>Medicines Warehouse</a></li>
+                                <li><a href="/dashboard/notifications"><i class="fa fa-inbox" aria-hidden="true"></i>Powiadomienia</a></li>
+                                <li><a href="/dashboard/producers"><i class="fa fa-telegram" aria-hidden="true"></i>Producenci Leków</a></li>
+                                <li><a href="/dashboard/categories"><i class="fa fa-bookmark" aria-hidden="true"></i>Kategorie</a></li>
+                                <li><a href="/dashboard/medicines"><i class="fa fa-medkit" aria-hidden="true"></i>Magazyn Leków</a></li>
                             </ul>
                         </div>
 
                         <div class="sidebar-option">
                             <div class="widget-menu">
-                                <span class="widget-menu-title">Admin functions</span>
+                                <span class="widget-menu-title">Funkcje administratora</span>
                             </div>
                             <ul>
-                                <li><a href="/dashboard/users"><i class="fa fa-cog" aria-hidden="true"></i> System administration</a></li>
-                                <li><a href="/dashboard/personal"><i class="fa fa-bar-chart" aria-hidden="true"></i>Personal Informations</a></li>
+                                <li><a href="/dashboard/users"><i class="fa fa-cog" aria-hidden="true"></i>Zarządzaj Personelem</a></li>
+                            </ul>
+                        </div>
+                        <div class="sidebar-option">
+                            <div class="widget-menu">
+                                <span class="widget-menu-title">Zarządzaj kontem</span>
+                            </div>
+                            <ul>
+                                <li><a href="/dashboard/personal"><i class="fa fa-bar-chart" aria-hidden="true"></i>Twoje dane personalne</a></li>
                             </ul>
                         </div>
                     </div>

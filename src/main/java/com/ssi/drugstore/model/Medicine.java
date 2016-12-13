@@ -36,7 +36,7 @@ public class Medicine {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 
@@ -97,7 +97,7 @@ public class Medicine {
         this.category = category;
     }
 
-    public static Medicine getMedicineForIdentifier(String id) {
+    public static Medicine getForIdentifier(String id) {
 
         int identifier = Integer.parseInt(id);
 
@@ -123,7 +123,7 @@ public class Medicine {
         return medicine;
     }
 
-    public static List medicines() {
+    public static List all() {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;

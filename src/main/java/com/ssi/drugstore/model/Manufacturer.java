@@ -5,30 +5,33 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by piotrpawlus on 12/12/2016.
+ * Created by piotrpawlus on 13/12/2016.
  */
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "manufacturer")
+public class Manufacturer {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="category_id_seq")
-    @SequenceGenerator(name = "category_id_seq", sequenceName = "category_id_seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="manufacturer_id_seq")
+    @SequenceGenerator(name = "manufacturer_id_seq", sequenceName = "manufacturer_id_seq", initialValue = 1, allocationSize = 1)
     @Column(name = "id")
     private int id;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "web")
+    private String web;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
-    private Set<Medicine> medicines = new HashSet<Medicine>();
+    @Column(name = "mail")
+    private String mail;
+
+    @Column(name = "phone")
+    private String phone;
 
     public int getId() {
         return id;
@@ -46,39 +49,42 @@ public class Category {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getWeb() {
+        return web;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setWeb(String web) {
+        this.web = web;
     }
 
-    public Set<Medicine> getMedicines() {
-        return medicines;
+    public String getMail() {
+        return mail;
     }
 
-    public void setMedicines(Set<Medicine> medicines) {
-        this.medicines = medicines;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
-    public static Category getForIdentifier(String id) {
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public static Manufacturer getForIdentifier(String id) {
 
         int identifier = Integer.parseInt(id);
 
-        return getForIdentifier(identifier);
-    }
-
-    public static Category getForIdentifier(int id) {
-
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
-        Category category;
+        Manufacturer manufacturer;
 
         try {
 
             transaction = session.beginTransaction();
-            category = (Category) session.get(Category.class, id);
+            manufacturer = (Manufacturer) session.get(Manufacturer.class, identifier);
             transaction.commit();
 
         } catch (HibernateException e) {
@@ -90,19 +96,19 @@ public class Category {
             session.close();
         }
 
-        return category;
+        return manufacturer;
     }
 
-    public static List<Category> all() {
+    public static List all() {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
-        List categories = new ArrayList();
+        List<Manufacturer> manufacturers = new ArrayList();
 
         try {
 
             transaction = session.beginTransaction();
-            categories = (List<Category>) session.createQuery("from Category").list();
+            manufacturers = session.createQuery("from Manufacturer").list();
             transaction.commit();
 
         } catch (HibernateException e) {
@@ -114,6 +120,6 @@ public class Category {
             session.close();
         }
 
-        return categories;
+        return manufacturers;
     }
 }

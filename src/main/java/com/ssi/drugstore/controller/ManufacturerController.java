@@ -2,6 +2,7 @@ package com.ssi.drugstore.controller;
 
 import com.ssi.drugstore.model.Category;
 import com.ssi.drugstore.model.HibernateUtil;
+import com.ssi.drugstore.model.Manufacturer;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -13,23 +14,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * Created by piotrpawlus on 12/12/2016.
+ * Created by piotrpawlus on 11/12/2016.
  */
 @Controller
-@RequestMapping("/dashboard/categories")
-public class CategoryController {
+@RequestMapping("/dashboard/producers")
+public class ManufacturerController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView index() {
-        return categoryModelAndView();
+        return manufacturerModelAndView();
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView create(Category category, BindingResult bindingResult) {
+    public ModelAndView create(Manufacturer manufacturer, BindingResult bindingResult) {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -37,7 +35,7 @@ public class CategoryController {
         try {
 
             transaction = session.beginTransaction();
-            session.saveOrUpdate(category);
+            session.saveOrUpdate(manufacturer);
             transaction.commit();
         } catch (HibernateException e) {
 
@@ -47,30 +45,30 @@ public class CategoryController {
             session.close();
         }
 
-        return categoryModelAndView();
+        return manufacturerModelAndView();
     }
 
     @RequestMapping(value = "/new")
-    public ModelAndView newMedicine() {
+    public ModelAndView newManufacturer() {
 
         ModelMap map = new ModelMap();
-        map.put("category", new Category());
+        map.put("manufacturer", new Manufacturer());
 
-        return new ModelAndView("categoryForm", map);
+        return new ModelAndView("manufacturerForm", map);
     }
 
     @RequestMapping(value = "/edit/{id}")
     public ModelAndView edit(@PathVariable String id) {
 
-        Category category = Category.getForIdentifier(id);
+        Manufacturer manufacturer = Manufacturer.getForIdentifier(id);
 
-        return new ModelAndView("categoryForm", "category", category);
+        return new ModelAndView("manufacturerForm", "manufacturer", manufacturer);
     }
 
     @RequestMapping(value = "/delete/{id}")
     public String delete(@PathVariable String id) {
 
-        Category category = Category.getForIdentifier(id);
+        Manufacturer manufacturer = Manufacturer.getForIdentifier(id);
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -78,7 +76,7 @@ public class CategoryController {
         try {
 
             transaction = session.beginTransaction();
-            session.delete(category);
+            session.delete(manufacturer);
             transaction.commit();
 
         } catch (HibernateException e) {
@@ -90,12 +88,13 @@ public class CategoryController {
             session.close();
         }
 
-        return "redirect:/dashboard/categories";
+        return "redirect:/dashboard/producers";
     }
 
     /* Private */
 
-    private ModelAndView categoryModelAndView() {
-        return new ModelAndView("categories", "categories", Category.all());
+    private ModelAndView manufacturerModelAndView() {
+        return new ModelAndView("manufacturers", "manufacturers", Manufacturer.all());
     }
+
 }

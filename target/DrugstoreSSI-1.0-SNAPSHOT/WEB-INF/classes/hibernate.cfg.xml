@@ -10,6 +10,7 @@
     <property name="hibernate.connection.password">drugstore1234</property>
     <mapping class="com.ssi.drugstore.model.Medicine"/>
     <mapping class="com.ssi.drugstore.model.Category"/>
+    <mapping class="com.ssi.drugstore.model.Manufacturer"/>
 
   </session-factory>
 </hibernate-configuration>

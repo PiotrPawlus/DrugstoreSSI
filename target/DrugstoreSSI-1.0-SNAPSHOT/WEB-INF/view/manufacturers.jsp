@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="z" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <z:dashboard pageTitle="A simple page">
 
@@ -21,7 +22,6 @@
                 </div>
                 <div class="dsb-title-single dsb-title-2">
                     <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    <p>Witaj ponownie, <span>Admin!</span> Twoje ostatnie logowanie było dnia 07-09-2016.</p>
                 </div>
                 <div class="dsb-title-single dsb-title-3">
                     <input class="form-control" type="search" placeholder="wyszukaj">
@@ -32,56 +32,50 @@
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                 <p>Home</p>
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
-                <p>Funkcje admina</p>
+                <p>System Apteczny</p>
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
-                <p>Lista użytkowników</p>
+                <p>Lista Producentów</p>
             </div>
 
 
             <div class="dsb-content">
                 <div class="dsb-content-inner row">
                     <div class="col-xs-12">
+                        <a href="/dashboard/producers/new" class="btn btn-success">Dodaj nowego producenta</a>
                         <div class="content-panel">
                             <div class="content-panel-header">
-                                <h4>Lista leków</h4>
+                                <h4>Lista producentów</h4>
                             </div>
                             <div class="content-panel-body">
                                 <table class="table table-bordered table-striped cf">
                                     <thead class="cf">
                                     <tr>
                                         <th>ID</th>
-                                        <th>Imię i nazwisko</th>
-                                        <th class="numeric">Adres zamieszkania</th>
-                                        <th class="numeric">Data urodzenia</th>
-                                        <th class="numeric">Data zatrudnienia</th>
-                                        <th class="numeric">Stanowisko</th>
+                                        <th>Nazwa</th>
+                                        <th class="numeric">Strona www</th>
+                                        <th class="numeric">Email</th>
+                                        <th class="numeric">Telefon</th>
+                                        <th class="numeric">Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>12345</td>
-                                        <td>Jan Kowalski</td>
-                                        <td class="numeric">Warszawska 129, 31-490 Kraków</td>
-                                        <td class="numeric">05.11.1983</td>
-                                        <td class="numeric">10.02.2015</td>
-                                        <td class="numeric">Technik</td>
-                                    </tr>
-                                    <tr>
-                                        <td>12345</td>
-                                        <td>Jan Kowalski</td>
-                                        <td class="numeric">Warszawska 129, 31-490 Kraków</td>
-                                        <td class="numeric">05.11.1983</td>
-                                        <td class="numeric">10.02.2015</td>
-                                        <td class="numeric">Technik</td>
-                                    </tr>
-                                    <tr>
-                                        <td>12345</td>
-                                        <td>Jan Kowalski</td>
-                                        <td class="numeric">Warszawska 129, 31-490 Kraków</td>
-                                        <td class="numeric">05.11.1983</td>
-                                        <td class="numeric">10.02.2015</td>
-                                        <td class="numeric">Technik</td>
-                                    </tr>
+
+                                    <c:forEach items="${manufacturers}" var="manufacturer">
+
+                                        <tr>
+                                            <td><c:out value="${manufacturer.id}"/></td>
+                                            <td><c:out value="${manufacturer.name}"/></td>
+                                            <td><c:out value="${manufacturer.web}"/></td>
+                                            <td><c:out value="${manufacturer.mail}"/></td>
+                                            <td class="numeric"><c:out value="${manufacturer.phone}"/></td>
+                                            <td>
+                                                <a href="/dashboard/producers/edit/${manufacturer.id}" class="btn btn-primary">Edytuj</a>
+                                                <a href="/dashboard/producers/delete/${manufacturer.id}" class="btn btn-danger">Usuń</a>
+                                            </td>
+                                        </tr>
+
+                                    </c:forEach>
+
                                     </tbody>
                                 </table>
                             </div>
