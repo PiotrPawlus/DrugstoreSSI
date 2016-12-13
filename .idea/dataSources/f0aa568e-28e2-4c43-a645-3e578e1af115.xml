@@ -9,8 +9,8 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2016-12-12.17:20:15.985</IntrospectionTimestamp>
-      <IntrospectionStateNumber>570</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2016-12-12.21:22:05.057</IntrospectionTimestamp>
+      <IntrospectionStateNumber>643</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -29,45 +29,108 @@
     <schema id="8" parent="2" name="information_schema">
       <ObjectId>12113</ObjectId>
     </schema>
-    <sequence id="9" parent="3" name="user_id_seq">
+    <sequence id="9" parent="3" name="personal_id_seq">
+      <ObjectId>16511</ObjectId>
+      <StateNumber>641</StateNumber>
+    </sequence>
+    <sequence id="10" parent="3" name="user_id_seq">
       <ObjectId>16500</ObjectId>
       <StateNumber>568</StateNumber>
     </sequence>
-    <table id="10" parent="3" name="user_account">
-      <ObjectId>16502</ObjectId>
-      <StateNumber>570</StateNumber>
+    <table id="11" parent="3" name="profile">
+      <ObjectId>16513</ObjectId>
+      <StateNumber>643</StateNumber>
     </table>
-    <column id="11" parent="10" name="id">
+    <table id="12" parent="3" name="user_account">
+      <ObjectId>16502</ObjectId>
+      <StateNumber>641</StateNumber>
+    </table>
+    <column id="13" parent="11" name="id">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>641</StateNumber>
+      <DefaultExpression>nextval(&apos;personal_id_seq&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="14" parent="11" name="name">
+      <Position>2</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>641</StateNumber>
+    </column>
+    <column id="15" parent="11" name="surname">
+      <Position>3</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>641</StateNumber>
+    </column>
+    <column id="16" parent="11" name="date_of_birthday">
+      <Position>4</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>641</StateNumber>
+    </column>
+    <column id="17" parent="11" name="phone">
+      <Position>5</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>641</StateNumber>
+    </column>
+    <column id="18" parent="11" name="user_account_id">
+      <Position>6</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>641</StateNumber>
+    </column>
+    <index id="19" parent="11" name="personal_pkey">
+      <ObjectId>16520</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="20" parent="11" name="personal_pkey">
+      <ObjectId>16521</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>personal_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="21" parent="11" name="personal_user_account_id_fkey">
+      <ObjectId>16522</ObjectId>
+      <ColNames>user_account_id</ColNames>
+      <RefTableName>user_account</RefTableName>
+      <RefKeyName>user_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="22" parent="12" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>568</StateNumber>
       <DefaultExpression>nextval(&apos;user_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="12" parent="10" name="email">
+    <column id="23" parent="12" name="email">
       <Position>2</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>568</StateNumber>
     </column>
-    <column id="13" parent="10" name="password">
+    <column id="24" parent="12" name="password">
       <Position>3</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>568</StateNumber>
     </column>
-    <column id="14" parent="10" name="role">
+    <column id="25" parent="12" name="role">
       <Position>4</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>568</StateNumber>
     </column>
-    <index id="15" parent="10" name="user_pkey">
+    <index id="26" parent="12" name="user_pkey">
       <ObjectId>16509</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="16" parent="10" name="user_pkey">
+    <key id="27" parent="12" name="user_pkey">
       <ObjectId>16510</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>user_pkey</UnderlyingIndexName>

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping("/dashboard")
-public class PersonalController {
+public class ProfileController {
 
-    @RequestMapping(value = "personal")
-    public String index() { return "personal"; }
+    @RequestMapping(value = "profile")
+    public String index() { return "profile"; }
 }
