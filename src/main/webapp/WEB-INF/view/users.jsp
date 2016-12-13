@@ -35,7 +35,9 @@
                 <p>Lista i dodawanie użytkowników</p>
             </div>
 
-            <jsp:include page="usersForm.jsp"/>
+            <jsp:include page="usersForm.jsp">
+                <jsp:param name="myVar" value="Dodaj"/>
+            </jsp:include>
 
 
             <div class="dsb-content">

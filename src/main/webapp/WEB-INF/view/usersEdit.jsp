@@ -34,7 +34,11 @@
                 <p>Edycja użytkownika</p>
             </div>
 
-            <jsp:include page="usersForm.jsp"/>
+            <jsp:include page="usersForm.jsp">
+                <jsp:param name="myVar" value="Edytuj"/>
+            </jsp:include>
+
+
 
         </div>
     </div>

@@ -30,12 +30,14 @@
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                 <p>Home</p>
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
-                <p>Funkcje admina</p>
+                <p>Funkcje administratora</p>
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
-                <p>Lista użytkowników</p>
+                <p>Lista i dodawanie użytkowników</p>
             </div>
 
-            <jsp:include page="usersForm.jsp"/>
+            <jsp:include page="usersForm.jsp">
+                <jsp:param name="myVar" value="Dodaj"/>
+            </jsp:include>
 
 
             <div class="dsb-content">

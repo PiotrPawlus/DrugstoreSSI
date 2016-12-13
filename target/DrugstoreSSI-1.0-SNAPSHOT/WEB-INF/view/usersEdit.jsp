@@ -29,12 +29,16 @@
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                 <p>Home</p>
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
-                <p>Funkcje admina</p>
+                <p>Funkcje administratora</p>
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
-                <p>Lista użytkowników</p>
+                <p>Edycja użytkownika</p>
             </div>
 
-            <jsp:include page="usersForm.jsp"/>
+            <jsp:include page="usersForm.jsp">
+                <jsp:param name="myVar" value="Edytuj"/>
+            </jsp:include>
+
+
 
         </div>
     </div>
