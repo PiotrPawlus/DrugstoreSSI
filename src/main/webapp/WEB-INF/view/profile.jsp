@@ -41,40 +41,32 @@
                     <div class="col-xs-12">
                         <div class="content-panel">
                             <div class="content-panel-header">
-                                <h4>Dodaj nowego użytkownika</h4>
+                                <h4>Twoje dane</h4>
                             </div>
                             <div class="content-panel-body">
                                 <div class="col-xs-6">
                                     <div class="form-group">
-                                        <label for="name">Imię i nazwisko</label>
+                                        <label for="name">Imię</label>
                                         <input type="text" id="name" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="adress">Adres zamieszkania</label>
+                                        <label for="adress">Data urodzenia</label>
                                         <input type="password" id="adress" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="adress">Stanowisko</label>
-                                        <select name="" id="" class="form-control">
-                                            <option value="10">Administrator</option>
-                                            <option value="20">Technik</option>
-                                            <option value="30">Pracownik zaw.</option>
-                                        </select>
                                     </div>
 
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="form-group">
-                                        <label for="data1">Data urodzenia</label>
+                                        <label for="data1">Nazwisko</label>
                                         <input type="email" id="data1" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="data2">Data zatrudnienia</label>
+                                        <label for="data2">Telefon</label>
                                         <input type="password" id="exampleInputPassword1" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 text-right">
-                                    <button class="btn btn-success" type="submit">Dodaj użytkownika</button>
+                                    <button class="btn btn-success" type="submit">Zapisz</button>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
