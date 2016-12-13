@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <form:form commandName="user" method="post" action="/dashboard/users">
     <div class="dsb-content">
@@ -14,7 +15,9 @@
             <div class="col-xs-12">
                 <div class="content-panel">
                     <div class="content-panel-header">
-                        <h4>Dodaj użytkownika</h4>
+                        <h4>
+                            ${param.myVar} użytkownika
+                        </h4>
                     </div>
                     <div class="content-panel-body">
                         <div class="col-xs-6">
