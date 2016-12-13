@@ -69,6 +69,8 @@ public class Category {
         return getForIdentifier(identifier);
     }
 
+    /* Static */
+
     public static Category getForIdentifier(int id) {
 
         Session session = HibernateUtil.getSessionFactory().openSession();

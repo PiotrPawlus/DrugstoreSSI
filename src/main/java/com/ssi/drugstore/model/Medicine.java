@@ -40,6 +40,10 @@ public class Medicine {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @JoinColumn(name = "manufacturer_id")
+    private Manufacturer manufacturer;
+
     public int getId() {
         return id;
     }
@@ -96,6 +100,16 @@ public class Medicine {
 
         this.category = category;
     }
+
+    public Manufacturer getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    /* Static */
 
     public static Medicine getForIdentifier(String id) {
 

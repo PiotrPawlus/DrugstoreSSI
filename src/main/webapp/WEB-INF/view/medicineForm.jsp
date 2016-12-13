@@ -47,6 +47,7 @@
                                     <form:hidden path="id" id="id"/>
 
                                     <div class="col-xs-6">
+
                                         <div class="form-group">
                                             <label for="name">Nazwa</label>
                                             <form:input path="name" id="name" class="form-control"/>
@@ -55,9 +56,13 @@
                                             <label for="price">Cena</label>
                                             <form:input path="price" id="price" class="form-control"/>
                                         </div>
+
                                         <div class="form-group">
-                                            <label for="description">Opis</label>
-                                            <form:input path="description" id="description" class="form-control"/>
+                                            <label for="category.id">Categoria</label>
+
+                                            <form:select path="category.id" id="category.id">
+                                                <form:options items="${categories}" itemValue="id" itemLabel="name" />
+                                            </form:select>
                                         </div>
                                     </div>
 
@@ -71,11 +76,18 @@
                                             <form:input path="measure" id="measure" class="form-control"/>
                                         </div>
                                         <div class="form-group">
-                                            <label for="category.id">Categoria</label>
+                                            <label for="manufacturer.id">Producent</label>
 
-                                            <form:select path="category.id" id="category.id">
-                                                <form:options items="${categories}" itemValue="id" itemLabel="name" />
+                                            <form:select path="manufacturer.id" id="manufacturer.id">
+                                                <form:options items="${manufacturers}" itemValue="id" itemLabel="name" />
                                             </form:select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label for="description">Opis</label>
+                                            <form:input path="description" id="description" class="form-control"/>
                                         </div>
                                     </div>
 

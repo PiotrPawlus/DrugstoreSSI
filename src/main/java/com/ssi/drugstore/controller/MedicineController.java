@@ -2,6 +2,7 @@ package com.ssi.drugstore.controller;
 
 import com.ssi.drugstore.model.Category;
 import com.ssi.drugstore.model.HibernateUtil;
+import com.ssi.drugstore.model.Manufacturer;
 import com.ssi.drugstore.model.Medicine;
 
 import org.hibernate.*;
@@ -58,6 +59,7 @@ public class MedicineController {
         ModelMap map = new ModelMap();
         map.put("medicine", new Medicine());
         map.put("categories", Category.all());
+        map.put("manufacturers", Manufacturer.all());
 
         return new ModelAndView("medicineForm", map);
     }
@@ -67,10 +69,12 @@ public class MedicineController {
 
         Medicine medicine = Medicine.getForIdentifier(id);
         medicine.setCategory(null);
+        medicine.setManufacturer(null);
 
         ModelMap map = new ModelMap();
         map.put("medicine", medicine);
         map.put("categories", Category.all());
+        map.put("manufacturers", Manufacturer.all());
 
         return new ModelAndView("medicineForm", map);
     }
