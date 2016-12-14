@@ -56,21 +56,10 @@
 
                         <div class="sidebar-option">
                             <div class="widget-menu">
-                                <span class="widget-menu-title">Obsługa klienta</span>
-                            </div>
-                            <ul>
-                                <li><a href="/dashboard/sales"><i class="fa fa-cart-plus" aria-hidden="true"></i>Sprzedaż</a></li>
-                                <li><a href="/dashboard/lexicon"><i class="fa fa-book" aria-hidden="true"></i>Leksykon leków</a></li>
-                            </ul>
-                        </div>
-
-
-                        <div class="sidebar-option">
-                            <div class="widget-menu">
                                 <span class="widget-menu-title">System Apteczny</span>
                             </div>
                             <ul>
-                                <li><a href="/dashboard/notifications"><i class="fa fa-inbox" aria-hidden="true"></i>Powiadomienia</a></li>
+                                <li><a href="/dashboard/notifications"><i class="fa fa-inbox" aria-hidden="true"></i>Komunikaty</a></li>
                                 <li><a href="/dashboard/producers"><i class="fa fa-telegram" aria-hidden="true"></i>Producenci Leków</a></li>
                                 <li><a href="/dashboard/categories"><i class="fa fa-bookmark" aria-hidden="true"></i>Kategorie</a></li>
                                 <li><a href="/dashboard/medicines"><i class="fa fa-medkit" aria-hidden="true"></i>Magazyn Leków</a></li>
@@ -91,6 +80,15 @@
                             </div>
                             <ul>
                                 <li><a href="/dashboard/personal"><i class="fa fa-bar-chart" aria-hidden="true"></i>Twoje dane personalne</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-option">
+                            <div class="widget-menu">
+                                <span class="widget-menu-title">Informacje ogólne</span>
+                            </div>
+                            <ul>
+                                <li><a href="/dashboard/info"><i class="fa fa-cart-plus" aria-hidden="true"></i>Informacje</a></li>
                             </ul>
                         </div>
                     </div>

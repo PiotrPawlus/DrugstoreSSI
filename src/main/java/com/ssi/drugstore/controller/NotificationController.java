@@ -12,8 +12,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/dashboard")
 public class NotificationController {
 
-    @RequestMapping(value = "/notifications")
+    @RequestMapping(method = RequestMethod.GET)
     public String index() {
+        return notifications();
+    }
+
+    @RequestMapping(value = "/notifications")
+    public String show() { return notifications(); }
+
+    private String notifications() {
         return "notifications";
     }
 }
