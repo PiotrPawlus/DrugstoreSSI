@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="z" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <z:dashboard pageTitle="A simple page">
 
@@ -45,16 +46,27 @@
                             <div class="content-panel-body">
                                 <div class="alert alert-success alert-dismissible" role="alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <strong>Nowa aktualizacja!</strong> System został zaktualizowany do nowej wersji 0.97.
+                                    <strong>Nowa aktualizacja!</strong> System został zaktualizowany do nowej wersji 0.91
                                 </div>
-                                <div class="alert alert-info alert-dismissible" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <strong>Niski stan!</strong> W naszych zasobach zaczyna brakować leku o nazwie: 4 Flex.
-                                </div>
-                                <div class="alert alert-danger alert-dismissible" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <strong>Uwaga!</strong> Całkowity brak substytutu do wytworzenia lekarstwa oczekującego w zamówieniu.
-                                </div>
+
+                                <c:forEach items="${emptyMedicineList}" var="medicine">
+
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <strong>Uwaga!</strong> Całkowity brak lekarstwa - <c:out value="${medicine.name}" />
+                                    </div>
+
+                                </c:forEach>
+
+                                <c:forEach items="${lowMedicineList}" var="medicine">
+
+                                    <div class="alert alert-info alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <strong>Niski stan!</strong> W naszych zasobach zaczyna brakować leku o nazwie: <c:out value="${medicine.name}" />
+                                    </div>
+
+                                </c:forEach>
+
                             </div>
                         </div>
                     </div>

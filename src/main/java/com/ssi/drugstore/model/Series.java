@@ -114,33 +114,45 @@ public class Series {
         return series;
     }
 
+    public static Boolean isEmpty(int id) {
+        return amount(id) < 1;
+    }
+
+    public static Boolean isLowAmount(int id) {
+
+        Integer count = amount(id);
+
+        return (count < 15 && count > 0);
+    }
+
+    private static Integer amount(int id) {
+
+        List<Series> list = allForMedicineId(id);
+
+        int count = 0;
+        for (Series series: list) {
+            count += series.getAmount();
+        }
+
+        return count;
+    }
+
     public static List<Series> allForMedicineId(String id) {
 
         Integer identifier = Integer.parseInt(id);
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-        List seriesList = new ArrayList();
+        return allForMedicineId(identifier);
+    }
 
-        try {
-
-            transaction = session.beginTransaction();
-            seriesList = session.createQuery("from Series where medicine=" + identifier).list();
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-
-        } finally {
-            session.close();
-        }
-
-        return seriesList;
+    public static List<Series> allForMedicineId(int id) {
+        return fetchForQuery("from Series where medicine=" + id);
     }
 
     public static List<Series> all() {
+        return fetchForQuery("from Series");
+    }
+
+    private static List<Series> fetchForQuery(String query) {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -149,7 +161,7 @@ public class Series {
         try {
 
             transaction = session.beginTransaction();
-            seriesList = (List<Series>) session.createQuery("from Series").list();
+            seriesList = (List<Series>) session.createQuery(query).list();
             transaction.commit();
 
         } catch (HibernateException e) {

@@ -123,6 +123,7 @@ public class Medicine {
         this.series = series;
     }
 
+
     /* Static */
 
     public static Medicine getForIdentifier(String id) {
