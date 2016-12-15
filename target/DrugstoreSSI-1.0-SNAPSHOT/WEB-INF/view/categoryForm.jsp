@@ -45,6 +45,10 @@
                                 <form:form commandName="category" method="post" action="/dashboard/categories">
                                     <form:hidden path="id" id="id"/>
 
+                                    <div class="col-xs-12">
+                                        <strong><form:errors path="name"/></strong>
+                                    </div>
+
                                     <div class="col-xs-6">
                                         <div class="form-group">
                                             <label for="name">Nazwa</label>

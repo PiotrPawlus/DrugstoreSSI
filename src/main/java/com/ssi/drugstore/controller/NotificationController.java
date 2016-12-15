@@ -2,6 +2,8 @@ package com.ssi.drugstore.controller;
 
 import com.ssi.drugstore.model.Medicine;
 import com.ssi.drugstore.model.Series;
+import com.ssi.drugstore.repository.MedicineRepository;
+import com.ssi.drugstore.repository.SeriesRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,17 +32,17 @@ public class NotificationController {
 
     private ModelAndView notifications() {
 
-        List<Medicine> allMedicine = Medicine.all();
+        List<Medicine> allMedicine = MedicineRepository.all();
         List<Medicine> lowMedicineList = new ArrayList<Medicine>();
         List<Medicine> emptyMedicineList = new ArrayList<Medicine>();
 
         for (Medicine medicine: allMedicine) {
 
-            if (Series.isLowAmount(medicine.getId())) {
+            if (SeriesRepository.isLowAmount(medicine.getId())) {
                 lowMedicineList.add(medicine);
             }
 
-            if (Series.isEmpty(medicine.getId())) {
+            if (SeriesRepository.isEmpty(medicine.getId())) {
                 emptyMedicineList.add(medicine);
             }
         }

@@ -3,6 +3,8 @@ package com.ssi.drugstore.controller;
 import com.ssi.drugstore.model.HibernateUtil;
 import com.ssi.drugstore.model.Medicine;
 import com.ssi.drugstore.model.Series;
+import com.ssi.drugstore.repository.MedicineRepository;
+import com.ssi.drugstore.repository.SeriesRepository;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -33,25 +35,10 @@ public class SeriesController {
     }
 
     @RequestMapping(value = "/{medicineId}", method = RequestMethod.POST)
-    public ModelAndView create(@ModelAttribute("series") @Valid Series series, @PathVariable String medicineId, BindingResult bindingResult) {
+    public ModelAndView create(@Valid @ModelAttribute("series") Series series, @PathVariable String medicineId, BindingResult bindingResult) {
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-
-        series.setMedicine(Medicine.getForIdentifier(medicineId));
-
-        try {
-
-            transaction = session.beginTransaction();
-            session.saveOrUpdate(series);
-            transaction.commit();
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
+        if (bindingResult.hasErrors()) return new ModelAndView("seriesForm", bindingResult.getModel());
+        SeriesRepository.createOrUpdate(series, medicineId);
 
         return seriesModelAndView(medicineId);
     }
@@ -59,7 +46,7 @@ public class SeriesController {
     @RequestMapping(value = "/{medicineId}/new")
     public ModelAndView newMedicine(@PathVariable String medicineId) {
 
-        Medicine medicine = Medicine.getForIdentifier(medicineId);
+        Medicine medicine = MedicineRepository.getForIdentifier(medicineId);
         ModelMap map = new ModelMap();
         map.put("series", new Series());
         map.put("medicine", medicine);
@@ -70,8 +57,8 @@ public class SeriesController {
     @RequestMapping(value = "/{medicineId}/edit/{id}")
     public ModelAndView edit(@PathVariable String medicineId, @PathVariable String id) {
 
-        Medicine medicine = Medicine.getForIdentifier(medicineId);
-        Series series = Series.getForIdentifier(id);
+        Medicine medicine = MedicineRepository.getForIdentifier(medicineId);
+        Series series = SeriesRepository.getForIdentifier(id);
 
         ModelMap map = new ModelMap();
         map.put("medicine", medicine);
@@ -83,25 +70,8 @@ public class SeriesController {
     @RequestMapping(value = "/{medicineId}/delete/{id}")
     public String delete(@PathVariable String medicineId, @PathVariable String id) {
 
-        Series series = Series.getForIdentifier(id);
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-
-        try {
-
-            transaction = session.beginTransaction();
-            session.delete(series);
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-
-        } finally {
-            session.close();
-        }
+        Series series = SeriesRepository.getForIdentifier(id);
+        SeriesRepository.delete(series);
 
         return "redirect:/dashboard/medicines/series/" + medicineId;
     }
@@ -118,9 +88,9 @@ public class SeriesController {
 
     private ModelAndView seriesModelAndView(String medicineId) {
 
-        Medicine medicine = Medicine.getForIdentifier(medicineId);
+        Medicine medicine = MedicineRepository.getForIdentifier(medicineId);
         ModelMap map = new ModelMap();
-        map.put("seriesList", Series.allForMedicineId(medicineId));
+        map.put("seriesList", SeriesRepository.allForMedicineId(medicineId));
         map.put("medicine", medicine);
 
         return new ModelAndView("series", map);

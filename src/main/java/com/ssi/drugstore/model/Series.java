@@ -7,6 +7,9 @@ import org.hibernate.Transaction;
 import javax.management.*;
 import javax.persistence.*;
 import javax.persistence.Query;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.*;
 
 /**
@@ -23,15 +26,21 @@ public class Series {
     private int id;
 
     @Column(name = "manufactured_at")
+    @NotNull(message = "Data produkcji nie może być pusta.")
     private Date manufacturedAt;
 
     @Column(name = "end_at")
+    @NotNull(message = "Data ważności nie może być pusta.")
     private Date endAt;
 
     @Column(name = "serial_number")
+    @NotNull(message = "Numer seryjny leku nie może być pusty.")
+    @Size(min = 4, max = 40, message = "Numer seryjny leku może zawierać od 4 do 40 znaków.")
     private String serialNumber;
 
     @Column(name = "amount")
+    @NotNull(message = "Ilość opakowań nie może być pusty.")
+    @Min(value = 0, message = "Ilość opakowań nie może być mniejsza niż 0.")
     private int amount;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -86,93 +95,4 @@ public class Series {
         this.medicine = medicine;
     }
 
-    /* Static */
-
-    public static Series getForIdentifier(String id) {
-
-        Integer identifier = Integer.parseInt(id);
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-        Series series;
-
-        try {
-
-            transaction = session.beginTransaction();
-            series = (Series) session.get(Series.class, identifier);
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-
-        } finally {
-            session.close();
-        }
-
-        return series;
-    }
-
-    public static Boolean isEmpty(int id) {
-        return amount(id) < 1;
-    }
-
-    public static Boolean isLowAmount(int id) {
-
-        Integer count = amount(id);
-
-        return (count < 15 && count > 0);
-    }
-
-    private static Integer amount(int id) {
-
-        List<Series> list = allForMedicineId(id);
-
-        int count = 0;
-        for (Series series: list) {
-            count += series.getAmount();
-        }
-
-        return count;
-    }
-
-    public static List<Series> allForMedicineId(String id) {
-
-        Integer identifier = Integer.parseInt(id);
-
-        return allForMedicineId(identifier);
-    }
-
-    public static List<Series> allForMedicineId(int id) {
-        return fetchForQuery("from Series where medicine=" + id);
-    }
-
-    public static List<Series> all() {
-        return fetchForQuery("from Series");
-    }
-
-    private static List<Series> fetchForQuery(String query) {
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-        List seriesList = new ArrayList();
-
-        try {
-
-            transaction = session.beginTransaction();
-            seriesList = (List<Series>) session.createQuery(query).list();
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-
-        } finally {
-            session.close();
-        }
-
-        return seriesList;
-    }
 }

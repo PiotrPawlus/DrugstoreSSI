@@ -51,6 +51,19 @@
                                     <form:hidden path="id" id="id"/>
                                     <form:hidden path="medicine.id" value="${series.medicine}"/>
 
+                                    <div class="col-xs-12">
+                                        <strong><form:errors path="manufacturedAt"/></strong>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <strong><form:errors path="endAt"/></strong>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <strong><form:errors path="serialNumber"/></strong>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <strong><form:errors path="amount"/></strong>
+                                    </div>
+
                                     <div class="col-xs-6">
                                         <div class="form-group">
                                             <label for="manufacturedAt">Wyprodukowano</label>
@@ -66,11 +79,11 @@
                                     <div class="col-xs-6">
                                         <div class="form-group">
                                             <label for="serialNumber">Number seryjny</label>
-                                            <form:input path="serialNumber" id="mail" class="form-control"/>
+                                            <form:input path="serialNumber" id="serialNumber" class="form-control"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="amount">Ilość</label>
-                                            <form:input path="amount" id="phone" class="form-control"/>
+                                            <form:input path="amount" id="amount" class="form-control"/>
                                         </div>
                                     </div>
 

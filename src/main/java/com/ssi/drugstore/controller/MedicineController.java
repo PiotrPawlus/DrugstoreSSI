@@ -2,16 +2,22 @@ package com.ssi.drugstore.controller;
 
 import com.ssi.drugstore.model.*;
 
+import com.ssi.drugstore.repository.CategoryRepository;
+import com.ssi.drugstore.repository.ManufacturerRepository;
+import com.ssi.drugstore.repository.MedicineRepository;
+import com.ssi.drugstore.repository.SeriesRepository;
 import org.hibernate.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -27,29 +33,13 @@ public class MedicineController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView create(Medicine medicine, BindingResult bindingResult) {
+    public ModelAndView create(@Valid @ModelAttribute("medicineForm") Medicine medicine, BindingResult bindingResult) {
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
+        if (bindingResult.hasErrors()) return new ModelAndView("medicineForm", bindingResult.getModel());
 
-        Category category = medicine.getCategory();
-        Category newCategory = Category.getForIdentifier(category.getId());
-        medicine.setCategory(newCategory);
+        MedicineRepository.createOrUpdate(medicine);
 
-        try {
-
-            transaction = session.beginTransaction();
-            session.saveOrUpdate(medicine);
-            transaction.commit();
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
-
-        return new ModelAndView("medicines", "medicines", Medicine.all());
+        return new ModelAndView("medicines", "medicines", MedicineRepository.all());
     }
 
     @RequestMapping(value = "/new")
@@ -57,8 +47,8 @@ public class MedicineController {
 
         ModelMap map = new ModelMap();
         map.put("medicine", new Medicine());
-        map.put("categories", Category.all());
-        map.put("manufacturers", Manufacturer.all());
+        map.put("categories", CategoryRepository.all());
+        map.put("manufacturers", ManufacturerRepository.all());
 
         return new ModelAndView("medicineForm", map);
     }
@@ -66,14 +56,14 @@ public class MedicineController {
     @RequestMapping(value = "/edit/{id}")
     public ModelAndView edit(@PathVariable String id) {
 
-        Medicine medicine = Medicine.getForIdentifier(id);
+        Medicine medicine = MedicineRepository.getForIdentifier(id);
         medicine.setCategory(null);
         medicine.setManufacturer(null);
 
         ModelMap map = new ModelMap();
         map.put("medicine", medicine);
-        map.put("categories", Category.all());
-        map.put("manufacturers", Manufacturer.all());
+        map.put("categories", CategoryRepository.all());
+        map.put("manufacturers", ManufacturerRepository.all());
 
         return new ModelAndView("medicineForm", map);
     }
@@ -81,25 +71,8 @@ public class MedicineController {
     @RequestMapping(value = "/delete/{id}")
     public String delete(@PathVariable String id) {
 
-        Medicine medicine = Medicine.getForIdentifier(id);
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-
-        try {
-
-            transaction = session.beginTransaction();
-            session.delete(medicine);
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-
-        } finally {
-            session.close();
-        }
+        Medicine medicine = MedicineRepository.getForIdentifier(id);
+        MedicineRepository.delete(medicine);
 
         return "redirect:/dashboard/medicines";
     }
@@ -107,8 +80,8 @@ public class MedicineController {
     @RequestMapping(value = "/series/{id}")
     public ModelAndView seriesIndex(@PathVariable String id) {
 
-        Medicine medicine = Medicine.getForIdentifier(id);
-        List<Series> seriesList = Series.allForMedicineId(id);
+        Medicine medicine = MedicineRepository.getForIdentifier(id);
+        List<Series> seriesList = SeriesRepository.allForMedicineId(id);
 
         ModelMap map = new ModelMap();
         map.put("seriesList", seriesList);
@@ -120,6 +93,6 @@ public class MedicineController {
     /* Private */
 
     private ModelAndView medicineModelAndView() {
-        return new ModelAndView("medicines", "medicines", Medicine.all());
+        return new ModelAndView("medicines", "medicines", MedicineRepository.all());
     }
 }

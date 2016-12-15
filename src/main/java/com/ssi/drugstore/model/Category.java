@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.*;
 
 /**
@@ -21,6 +23,8 @@ public class Category {
     private int id;
 
     @Column(name = "name")
+    @NotNull(message = "Kategoria leków musi posiadać nazwę.")
+    @Size(message = "Kategoria leków może zawierać od 2 do 50 znaków.")
     private String name;
 
     @Column(name = "description")
@@ -60,62 +64,5 @@ public class Category {
 
     public void setMedicines(Set<Medicine> medicines) {
         this.medicines = medicines;
-    }
-
-    public static Category getForIdentifier(String id) {
-
-        int identifier = Integer.parseInt(id);
-
-        return getForIdentifier(identifier);
-    }
-
-    /* Static */
-
-    public static Category getForIdentifier(int id) {
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-        Category category;
-
-        try {
-
-            transaction = session.beginTransaction();
-            category = (Category) session.get(Category.class, id);
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-
-        } finally {
-            session.close();
-        }
-
-        return category;
-    }
-
-    public static List<Category> all() {
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-        List categories = new ArrayList();
-
-        try {
-
-            transaction = session.beginTransaction();
-            categories = (List<Category>) session.createQuery("from Category").list();
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-
-        } finally {
-            session.close();
-        }
-
-        return categories;
     }
 }

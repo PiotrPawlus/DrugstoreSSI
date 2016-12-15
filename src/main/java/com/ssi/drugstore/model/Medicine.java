@@ -5,6 +5,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -24,15 +27,23 @@ public class Medicine {
     private int id;
 
     @Column(name = "name")
+    @NotNull(message = "Nazwa leku nie może być pusta.")
+    @Size(min = 2, max = 100, message = "Nazwa leku musi zawierać od 2 do 100 znaków.")
     private String name;
 
     @Column(name = "price")
+    @NotNull(message = "Cena produktu nie może być pusta.")
+    @Min(value = 0, message = "Cena nie może być równa 0.")
     private Float price;
 
     @Column(name = "capacity")
+    @NotNull(message = "Pojemość/Ilość produktu nie może być pusta.")
+    @Min(value = 0, message = "Pojemość/Ilość nie może być równa 0.")
     private int capacity;
 
     @Column(name = "measure")
+    @NotNull(message = "Miara produktu nie może być pusta")
+    @Size(min = 1, max = 50)
     private String measure;
 
     @Column(name = "description")
@@ -121,58 +132,5 @@ public class Medicine {
 
     public void setSeries(Set<Series> series) {
         this.series = series;
-    }
-
-
-    /* Static */
-
-    public static Medicine getForIdentifier(String id) {
-
-        int identifier = Integer.parseInt(id);
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-        Medicine medicine;
-
-        try {
-
-            transaction = session.beginTransaction();
-            medicine = (Medicine) session.get(Medicine.class, identifier);
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-
-        } finally {
-            session.close();
-        }
-
-        return medicine;
-    }
-
-    public static List all() {
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-        List<Medicine> medicines = new ArrayList();
-
-        try {
-
-            transaction = session.beginTransaction();
-            medicines = session.createQuery("from Medicine").list();
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-
-        } finally {
-            session.close();
-        }
-
-        return medicines;
     }
 }

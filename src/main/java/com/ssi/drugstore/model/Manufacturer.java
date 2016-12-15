@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -24,6 +26,8 @@ public class Manufacturer {
     private int id;
 
     @Column(name = "name")
+    @NotNull(message = "Nazwa producenta nie może być pusta.")
+    @Size(min = 2, max = 150, message = "Nazwa producenta powinna mieć minimalnie 2 znaki, maksymalnie 150.")
     private String name;
 
     @Column(name = "web")
@@ -85,57 +89,5 @@ public class Manufacturer {
 
     public void setMedicines(Set<Medicine> medicines) {
         this.medicines = medicines;
-    }
-
-    /* Static */
-
-    public static Manufacturer getForIdentifier(String id) {
-
-        int identifier = Integer.parseInt(id);
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-        Manufacturer manufacturer;
-
-        try {
-
-            transaction = session.beginTransaction();
-            manufacturer = (Manufacturer) session.get(Manufacturer.class, identifier);
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-
-        } finally {
-            session.close();
-        }
-
-        return manufacturer;
-    }
-
-    public static List all() {
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-        List<Manufacturer> manufacturers = new ArrayList();
-
-        try {
-
-            transaction = session.beginTransaction();
-            manufacturers = session.createQuery("from Manufacturer").list();
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-
-        } finally {
-            session.close();
-        }
-
-        return manufacturers;
     }
 }

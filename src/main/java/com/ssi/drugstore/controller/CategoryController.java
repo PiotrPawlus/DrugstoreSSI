@@ -2,17 +2,20 @@ package com.ssi.drugstore.controller;
 
 import com.ssi.drugstore.model.Category;
 import com.ssi.drugstore.model.HibernateUtil;
+import com.ssi.drugstore.repository.CategoryRepository;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,23 +32,13 @@ public class CategoryController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView create(Category category, BindingResult bindingResult) {
+    public ModelAndView create(@Valid @ModelAttribute("categoryForm") Category category, BindingResult bindingResult) {
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-
-        try {
-
-            transaction = session.beginTransaction();
-            session.saveOrUpdate(category);
-            transaction.commit();
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-        } finally {
-            session.close();
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("categoryForm", bindingResult.getModel());
         }
+
+        CategoryRepository.createOrUpdate(category);
 
         return categoryModelAndView();
     }
@@ -62,7 +55,7 @@ public class CategoryController {
     @RequestMapping(value = "/edit/{id}")
     public ModelAndView edit(@PathVariable String id) {
 
-        Category category = Category.getForIdentifier(id);
+        Category category = CategoryRepository.getForIdentifier(id);
 
         return new ModelAndView("categoryForm", "category", category);
     }
@@ -70,25 +63,8 @@ public class CategoryController {
     @RequestMapping(value = "/delete/{id}")
     public String delete(@PathVariable String id) {
 
-        Category category = Category.getForIdentifier(id);
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-
-        try {
-
-            transaction = session.beginTransaction();
-            session.delete(category);
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-
-        } finally {
-            session.close();
-        }
+        Category category = CategoryRepository.getForIdentifier(id);
+        CategoryRepository.delete(category);
 
         return "redirect:/dashboard/categories";
     }
@@ -96,6 +72,6 @@ public class CategoryController {
     /* Private */
 
     private ModelAndView categoryModelAndView() {
-        return new ModelAndView("categories", "categories", Category.all());
+        return new ModelAndView("categories", "categories", CategoryRepository.all());
     }
 }
