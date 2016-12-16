@@ -26,21 +26,15 @@ public class Series {
     private int id;
 
     @Column(name = "manufactured_at")
-    @NotNull(message = "Data produkcji nie może być pusta.")
     private Date manufacturedAt;
 
     @Column(name = "end_at")
-    @NotNull(message = "Data ważności nie może być pusta.")
     private Date endAt;
 
     @Column(name = "serial_number")
-    @NotNull(message = "Numer seryjny leku nie może być pusty.")
-    @Size(min = 4, max = 40, message = "Numer seryjny leku może zawierać od 4 do 40 znaków.")
     private String serialNumber;
 
     @Column(name = "amount")
-    @NotNull(message = "Ilość opakowań nie może być pusty.")
-    @Min(value = 0, message = "Ilość opakowań nie może być mniejsza niż 0.")
     private int amount;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

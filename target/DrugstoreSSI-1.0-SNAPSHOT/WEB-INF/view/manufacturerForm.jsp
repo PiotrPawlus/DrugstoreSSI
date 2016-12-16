@@ -40,11 +40,11 @@
                         <a href="/dashboard/producers" class="btn btn-warning">Powrót</a>
                         <div class="content-panel">
                             <div class="content-panel-header">
-                                <h4>Stwórz nowy lek</h4>
+                                <h4>Stwórz nowego producenta</h4>
                             </div>
                             <div class="content-panel-body">
 
-                                <form:form commandName="manufacturer" method="post" action="/dashboard/producers">
+                                <form:form commandName="manufacturer" method="post" id="nowy-producent" action="/dashboard/producers">
                                     <form:hidden path="id" id="id"/>
 
                                     <div class="col-xs-12">
@@ -54,22 +54,22 @@
                                     <div class="col-xs-6">
                                         <div class="form-group">
                                             <label for="name">Nazwa</label>
-                                            <form:input path="name" id="name" class="form-control"/>
+                                            <form:input path="name" id="name" name="name" class="form-control"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="web">Strona www</label>
-                                            <form:input path="web" id="web" class="form-control"/>
+                                            <form:input path="web" id="web" name="web" class="form-control"/>
                                         </div>
                                     </div>
 
                                     <div class="col-xs-6">
                                         <div class="form-group">
                                             <label for="mail">Aders mailowy</label>
-                                            <form:input path="mail" id="mail" class="form-control"/>
+                                            <form:input path="mail" id="mail" name="mail" class="form-control"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="phone">Telefon</label>
-                                            <form:input path="phone" id="phone" class="form-control"/>
+                                            <form:input path="phone" id="phone" name="phone" class="form-control"/>
                                         </div>
                                     </div>
 

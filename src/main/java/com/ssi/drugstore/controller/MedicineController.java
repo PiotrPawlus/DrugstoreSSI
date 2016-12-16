@@ -33,9 +33,7 @@ public class MedicineController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView create(@Valid @ModelAttribute("medicineForm") Medicine medicine, BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) return new ModelAndView("medicineForm", bindingResult.getModel());
+    public ModelAndView create(Medicine medicine, BindingResult bindingResult) {
 
         MedicineRepository.createOrUpdate(medicine);
 

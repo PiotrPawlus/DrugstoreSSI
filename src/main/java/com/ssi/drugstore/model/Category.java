@@ -23,8 +23,6 @@ public class Category {
     private int id;
 
     @Column(name = "name")
-    @NotNull(message = "Kategoria leków musi posiadać nazwę.")
-    @Size(message = "Kategoria leków może zawierać od 2 do 50 znaków.")
     private String name;
 
     @Column(name = "description")

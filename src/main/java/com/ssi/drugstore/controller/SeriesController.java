@@ -26,24 +26,39 @@ import java.util.Map;
  * Created by piotrpawlus on 11/12/2016.
  */
 @Controller
-@RequestMapping("/dashboard/medicines/series")
+@RequestMapping("/dashboard/medicines/series/{medicineId}")
 public class SeriesController {
 
-    @RequestMapping(value = "/{medicineId}", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView index(@PathVariable String medicineId) {
         return seriesModelAndView(medicineId);
     }
 
-    @RequestMapping(value = "/{medicineId}", method = RequestMethod.POST)
-    public ModelAndView create(@Valid @ModelAttribute("series") Series series, @PathVariable String medicineId, BindingResult bindingResult) {
+    @RequestMapping(method = RequestMethod.POST)
+    public ModelAndView create(@ModelAttribute("series") @Valid Series series, @PathVariable String medicineId, BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors()) return new ModelAndView("seriesForm", bindingResult.getModel());
-        SeriesRepository.createOrUpdate(series, medicineId);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+
+        series.setMedicine(MedicineRepository.getForIdentifier(medicineId));
+
+        try {
+
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(series);
+            transaction.commit();
+        } catch (HibernateException e) {
+
+            if (transaction != null) transaction.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
 
         return seriesModelAndView(medicineId);
     }
 
-    @RequestMapping(value = "/{medicineId}/new")
+    @RequestMapping(value = "/new")
     public ModelAndView newMedicine(@PathVariable String medicineId) {
 
         Medicine medicine = MedicineRepository.getForIdentifier(medicineId);
@@ -54,12 +69,12 @@ public class SeriesController {
         return new ModelAndView("seriesForm", map);
     }
 
-    @RequestMapping(value = "/{medicineId}/edit/{id}")
+    @RequestMapping(value = "/edit/{id}")
     public ModelAndView edit(@PathVariable String medicineId, @PathVariable String id) {
 
         Medicine medicine = MedicineRepository.getForIdentifier(medicineId);
         Series series = SeriesRepository.getForIdentifier(id);
-
+        series.setMedicine(null);
         ModelMap map = new ModelMap();
         map.put("medicine", medicine);
         map.put("series", series);
@@ -67,18 +82,35 @@ public class SeriesController {
         return new ModelAndView("seriesForm", map);
     }
 
-    @RequestMapping(value = "/{medicineId}/delete/{id}")
+    @RequestMapping(value = "/delete/{id}")
     public String delete(@PathVariable String medicineId, @PathVariable String id) {
 
         Series series = SeriesRepository.getForIdentifier(id);
-        SeriesRepository.delete(series);
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+
+        try {
+
+            transaction = session.beginTransaction();
+            session.delete(series);
+            transaction.commit();
+
+        } catch (HibernateException e) {
+
+            if (transaction != null) transaction.rollback();
+            throw e;
+
+        } finally {
+            session.close();
+        }
 
         return "redirect:/dashboard/medicines/series/" + medicineId;
     }
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         dateFormat.setLenient(false);
 
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));

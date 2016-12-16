@@ -27,23 +27,15 @@ public class Medicine {
     private int id;
 
     @Column(name = "name")
-    @NotNull(message = "Nazwa leku nie może być pusta.")
-    @Size(min = 2, max = 100, message = "Nazwa leku musi zawierać od 2 do 100 znaków.")
     private String name;
 
     @Column(name = "price")
-    @NotNull(message = "Cena produktu nie może być pusta.")
-    @Min(value = 0, message = "Cena nie może być równa 0.")
     private Float price;
 
     @Column(name = "capacity")
-    @NotNull(message = "Pojemość/Ilość produktu nie może być pusta.")
-    @Min(value = 0, message = "Pojemość/Ilość nie może być równa 0.")
     private int capacity;
 
     @Column(name = "measure")
-    @NotNull(message = "Miara produktu nie może być pusta")
-    @Size(min = 1, max = 50)
     private String measure;
 
     @Column(name = "description")

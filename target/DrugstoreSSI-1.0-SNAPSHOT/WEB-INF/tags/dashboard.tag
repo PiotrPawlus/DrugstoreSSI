@@ -7,14 +7,21 @@
 <html>
     <head>
         <spring:url value="/resources/css/style.css" var="styleCss" />
+        <spring:url value="/resources/css/jquery-ui.css" var="styleCss1" />
+        <spring:url value="/resources/css/jquery-ui.structure.css" var="styleCss2" />
+        <spring:url value="/resources/css/jquery-ui.theme.css" var="styleCss3" />
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Projekt SSI</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
         <link href="${styleCss}" rel="stylesheet" />
+        <link href="${styleCss1}" rel="stylesheet" />
+        <link href="${styleCss2}" rel="stylesheet" />
+        <link href="${styleCss3}" rel="stylesheet" />
     </head>
 
     <body id="dashboard">
@@ -102,6 +109,8 @@
         <spring:url value="/resources/js/script.js" var="scriptJS" />
 
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="${scriptJS}"></script>
     </body>

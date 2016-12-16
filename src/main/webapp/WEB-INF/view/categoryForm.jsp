@@ -42,7 +42,7 @@
                             </div>
                             <div class="content-panel-body">
 
-                                <form:form commandName="category" method="post" action="/dashboard/categories">
+                                <form:form commandName="category" method="post" id="nowa-kategoria" action="/dashboard/categories">
                                     <form:hidden path="id" id="id"/>
 
                                     <div class="col-xs-12">
@@ -52,7 +52,7 @@
                                     <div class="col-xs-6">
                                         <div class="form-group">
                                             <label for="name">Nazwa</label>
-                                            <form:input path="name" id="name" class="form-control"/>
+                                            <form:input path="name" id="name" name="name" class="form-control"/>
                                         </div>
                                     </div>
                                     <div class="col-xs-6">

@@ -32,11 +32,7 @@ public class CategoryController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView create(@Valid @ModelAttribute("categoryForm") Category category, BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) {
-            return new ModelAndView("categoryForm", bindingResult.getModel());
-        }
+    public ModelAndView create(Category category, BindingResult bindingResult) {
 
         CategoryRepository.createOrUpdate(category);
 

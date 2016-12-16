@@ -26,8 +26,6 @@ public class Manufacturer {
     private int id;
 
     @Column(name = "name")
-    @NotNull(message = "Nazwa producenta nie może być pusta.")
-    @Size(min = 2, max = 150, message = "Nazwa producenta powinna mieć minimalnie 2 znaki, maksymalnie 150.")
     private String name;
 
     @Column(name = "web")

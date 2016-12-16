@@ -47,7 +47,7 @@
                             </div>
                             <div class="content-panel-body">
 
-                                <form:form commandName="series" method="post" action="/dashboard/medicines/series/${medicine.id}">
+                                <form:form commandName="series" method="post" id="nowa-partia" action="/dashboard/medicines/series/${medicine.id}">
                                     <form:hidden path="id" id="id"/>
                                     <form:hidden path="medicine.id" value="${series.medicine}"/>
 
@@ -66,24 +66,24 @@
 
                                     <div class="col-xs-6">
                                         <div class="form-group">
-                                            <label for="manufacturedAt">Wyprodukowano</label>
-                                            <form:input path="manufacturedAt" class="form-control"/>
+                                            <label for="manufacturedAt">Data produkcji</label>
+                                            <form:input path="manufacturedAt" id="manufacturedAt" name="manufacturedAt" class="form-control"/>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="endAt">Data ważności</label>
-                                            <form:input path="endAt" class="form-control"/>
+                                            <form:input path="endAt" id="endAt" name="endAt" class="form-control"/>
                                         </div>
                                     </div>
 
                                     <div class="col-xs-6">
                                         <div class="form-group">
                                             <label for="serialNumber">Number seryjny</label>
-                                            <form:input path="serialNumber" id="serialNumber" class="form-control"/>
+                                            <form:input path="serialNumber" id="serialNumber" name="serialNumber" class="form-control"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="amount">Ilość</label>
-                                            <form:input path="amount" id="amount" class="form-control"/>
+                                            <form:input path="amount" id="amount" name="amount" class="form-control"/>
                                         </div>
                                     </div>
 

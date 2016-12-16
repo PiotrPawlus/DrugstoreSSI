@@ -31,9 +31,7 @@ public class ManufacturerController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView create(@Valid @ModelAttribute("manufacturerForm") Manufacturer manufacturer, BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) return new ModelAndView("manufacturerForm", bindingResult.getModel());
+    public ModelAndView create(Manufacturer manufacturer, BindingResult bindingResult) {
 
         ManufacturerRepository.createOrUpdate(manufacturer);
 
