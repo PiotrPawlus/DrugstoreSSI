@@ -37,8 +37,8 @@
                             <div class="form-group">
                                 <label>Stanowisko</label>
                                 <form:select path="role" id="role" class="form-control">
-                                    <form:option value="Administrator" label="Administrator"/>
-                                    <form:option value="Farmaceuta" label="Farmaceuta"/>
+                                    <form:option value="ROLE_ADMIN" label="Administrator"/>
+                                    <form:option value="ROLE_USER" label="Farmaceuta"/>
                                 </form:select>
                             </div>
                         </div>

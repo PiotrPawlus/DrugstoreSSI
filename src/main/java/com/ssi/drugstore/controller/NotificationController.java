@@ -22,10 +22,10 @@ import java.util.List;
 @RequestMapping("/dashboard")
 public class NotificationController {
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView index() {
-        return notifications();
-    }
+//    @RequestMapping(method = RequestMethod.GET)
+//    public ModelAndView index() {
+//        return notifications();
+//    }
 
     @RequestMapping(value = "/notifications")
     public ModelAndView show() { return notifications(); }
