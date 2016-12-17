@@ -2,10 +2,15 @@ package com.ssi.drugstore.controller;
 
 import com.ssi.drugstore.model.HibernateUtil;
 import com.ssi.drugstore.model.User;
+import com.ssi.drugstore.service.SecurityService;
+import com.ssi.drugstore.service.UserService;
+import com.ssi.drugstore.validator.UserValidator;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import sun.plugin.com.BeanClass;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,15 +30,24 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/dashboard/users")
-public class OLDUserController {
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private SecurityService securityService;
+
+    @Autowired
+    private UserValidator userValidator;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView index() {
+    public String index(Model model, HttpServletRequest request) {
 
-        ModelMap map = new ModelMap();
-        map.put("user", new User());
-        map.put("users", users());
-        return new ModelAndView("users", map);
+        request.setAttribute("user", new User());
+        request.setAttribute("users", users());
+
+        return "users";
     }
 
     @RequestMapping(value = "/edit/{id}")
@@ -45,28 +60,21 @@ public class OLDUserController {
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView create(@ModelAttribute User user, BindingResult bindingResult, ModelMap model){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
+    public String create(@ModelAttribute User user, BindingResult bindingResult, ModelMap model){
 
-        try {
-
-            transaction = session.beginTransaction();
-            session.saveOrUpdate(user);
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-
-        } finally {
-            session.close();
+        if (bindingResult.hasErrors()) {
+            return "index";
         }
+
+        userService.save(user);
+
+        securityService.autologin(user.getUsername(), user.getPasswordConfirm());
+
+
 
         model.addAttribute("user",new User());
 
-        return new ModelAndView("users", "users", users());
+        return "redirect:/dashboard/users";
     }
 
 
