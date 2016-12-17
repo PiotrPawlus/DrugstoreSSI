@@ -21,8 +21,7 @@ import java.util.Set;
 public class Medicine {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="medicine_id_seq")
-    @SequenceGenerator(name = "medicine_id_seq", sequenceName = "medicine_id_seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id")
     private int id;
 

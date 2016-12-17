@@ -17,8 +17,7 @@ import java.util.*;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="category_id_seq")
-    @SequenceGenerator(name = "category_id_seq", sequenceName = "category_id_seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "id")
     private int id;
 

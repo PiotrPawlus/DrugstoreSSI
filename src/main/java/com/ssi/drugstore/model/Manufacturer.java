@@ -20,8 +20,7 @@ import java.util.Set;
 public class Manufacturer {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="manufacturer_id_seq")
-    @SequenceGenerator(name = "manufacturer_id_seq", sequenceName = "manufacturer_id_seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id")
     private int id;
 
