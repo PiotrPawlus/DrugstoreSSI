@@ -19,6 +19,18 @@
           p:suffix=".jsp" />
 	<mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" />
     <mvc:annotation-driven />
+
+
+	<import resource="appconfig-mvc.xml"/>
+
+	<import resource="appconfig-data.xml"/>
+
+	<import resource="appconfig-security.xml"/>
+
+	<!-- Scans within the base package of the application for @Component classes to configure as beans -->
+	<context:component-scan base-package="com.ssi.drugstore.*"/>
+
+	<context:property-placeholder location="classpath:application.properties"/>
 </beans>
 
 
