@@ -24,11 +24,15 @@
                             <form:hidden path="id" id="id"/>
                             <div class="form-group">
                                 <label>Email</label>
-                                <form:input path="email" id="email" type="email" class="form-control"/>
+                                <form:input path="username" id="username" type="text" class="form-control"/>
                             </div>
                             <div class="form-group">
                                 <label>Hasło</label>
                                 <form:input path="password" id="password" type="password" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Hasło</label>
+                                <form:input path="passwordConfirm" id="passwordConfirm" type="password" class="form-control"/>
                             </div>
                             <div class="form-group">
                                 <label>Stanowisko</label>

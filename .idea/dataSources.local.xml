@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="hibernate.cfg.xml/Hibernate" uuid="f0aa568e-28e2-4c43-a645-3e578e1af115">
-      <database-info product="MySQL" version="5.5.5-10.1.19-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+    <data-source name="drugstore@localhost" uuid="c32bc202-4ea2-458a-83fe-de2dce9c4e34">
+      <database-info product="MySQL" version="5.6.24" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>
-      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper" />
-      <user-name>root</user-name>
-      <resolve-scope>drugstore:drugstore_superuser,public</resolve-scope>
-    </data-source>
-    <data-source name="PostgreSQL -" uuid="8e63f789-fad9-4576-9729-f1e609ddfe2e">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <secret-storage>master_key</secret-storage>
-      <first-sync>true</first-sync>
+      <user-name>root</user-name>
+      <resolve-scope>drugstore:</resolve-scope>
     </data-source>
-    <data-source name="drugstore@localhost" uuid="155e89c1-6c28-4555-bb05-331d9312afa9">
-      <database-info product="MySQL" version="5.5.5-10.1.19-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+    <data-source name="hibernate.cfg.xml/Hibernate driver - jdbc:mysql://localhost:3306/drugstore" uuid="fdf11e9f-6c3e-451f-90b7-25b94bc71ddf">
+      <database-info product="MySQL" version="5.6.24" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>
-      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper" />
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
       <resolve-scope>drugstore:</resolve-scope>

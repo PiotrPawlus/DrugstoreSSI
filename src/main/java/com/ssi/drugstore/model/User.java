@@ -6,34 +6,16 @@ import javax.persistence.*;
  * Created by piotrpawlus on 11/12/2016.
  */
 @Entity
-@Table(name = "user_account")
+@Table(name = "user")
 public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
-    @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", initialValue = 1, allocationSize = 1)
-    @Column(name = "id")
     private int id;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "password")
+    private String username;
     private String password;
-
-    @Column(name = "role")
+    private String passwordConfirm;
     private String role;
 
-    public User() {
-    }
-
-    public User(int id, String email, String password, String role) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-    }
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
@@ -42,12 +24,12 @@ public class User {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -56,6 +38,15 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Transient
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
     }
 
     public String getRole() {

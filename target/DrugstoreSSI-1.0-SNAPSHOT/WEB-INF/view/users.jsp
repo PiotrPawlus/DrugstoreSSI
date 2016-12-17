@@ -67,7 +67,7 @@
                                         <tr>
                                             <td><c:out value="${user.id}"/></td>
                                             <td>Jan Kowalski</td>
-                                            <td><c:out value="${user.email}"/></td>
+                                            <td><c:out value="${user.username}"/></td>
                                             <td class="numeric">Warszawska 129, 31-490 Kraków</td>
                                             <td class="numeric">05.11.1983</td>
                                             <td class="numeric">10.02.2015</td>

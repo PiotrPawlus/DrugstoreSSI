@@ -25,7 +25,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="hibernate.cfg.xml" value="f0aa568e-28e2-4c43-a645-3e578e1af115" />
+          <unit-entry name="hibernate.cfg.xml" value="fdf11e9f-6c3e-451f-90b7-25b94bc71ddf" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.cfg.xml" />
@@ -71,5 +71,6 @@
     <orderEntry type="library" name="Maven: javax.inject:javax.inject:1" level="project" />
     <orderEntry type="library" name="Maven: org.postgresql:postgresql:9.4.1212.jre7" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet:jstl:1.2" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.36" level="project" />
   </component>
 </module>
