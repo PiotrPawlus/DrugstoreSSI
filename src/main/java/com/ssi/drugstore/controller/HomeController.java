@@ -26,10 +26,10 @@ public class HomeController {
     private String login(Model model, String error, String logout) {
 
         if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
+            model.addAttribute("error", "Niepoprawna nazwa użytkowanika lub hasło.");
 
         if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
+            model.addAttribute("message", "Zostałeś poprawnie wylogowany.");
 
         return "/login";
     }

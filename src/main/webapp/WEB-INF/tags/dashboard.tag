@@ -52,6 +52,18 @@
                         </div>
                         <div class="clearfix"></div>
                     </div>
+                    <div class="navbar-option-single navbar-settings">
+                        <p>
+                            <c:if test="${pageContext.request.userPrincipal.name != null}">
+                                <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                </form>
+                                <a onclick="document.forms['logoutForm'].submit()" class="btn btn-default" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Wyloguj się
+                                </a>
+                            </c:if>
+                        </p>
+                    </div>
                 </div>
             </nav>
             <div class="dashboard-left-menu">
