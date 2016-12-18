@@ -17,7 +17,6 @@ public class HomeController {
         return login(model, error, logout);
     }
 
-
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String indexLogin(Model model, String error, String logout) {
         return login(model, error, logout);

@@ -25,15 +25,19 @@ public class Manufacturer {
     private int id;
 
     @Column(name = "name")
+    @NotNull(message = "Nazwa nie może być pusty")
     private String name;
 
     @Column(name = "web")
+    @NotNull(message = "Strona www nie może być pusta")
     private String web;
 
     @Column(name = "mail")
+    @NotNull(message = "Mail nie może być pusty")
     private String mail;
 
     @Column(name = "phone")
+    @NotNull(message = "Telefon nie może być pusty")
     private String phone;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

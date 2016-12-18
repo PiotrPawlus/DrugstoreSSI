@@ -1,6 +1,7 @@
 package com.ssi.drugstore.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by piotrpawlus on 11/12/2016.
@@ -8,10 +9,19 @@ import javax.persistence.*;
 @Entity
 @Table(name = "user")
 public class User {
+
     private int id;
+
+    @NotNull(message = "Nazwa użytkownika nie może być pusta")
     private String username;
+
+    @NotNull(message = "Hasło nie może być puste")
     private String password;
+
+    @NotNull(message = "Potwierdzenie hasła nie może być puste")
     private String passwordConfirm;
+
+    @NotNull(message = "Rola nie może być pusta")
     private String role;
 
     @Id

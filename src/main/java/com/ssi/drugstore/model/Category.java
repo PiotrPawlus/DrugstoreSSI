@@ -22,9 +22,11 @@ public class Category {
     private int id;
 
     @Column(name = "name")
+    @NotNull(message = "Nazwa nie może być pusta")
     private String name;
 
     @Column(name = "description")
+    @NotNull(message = "Opis nie może być pusty")
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

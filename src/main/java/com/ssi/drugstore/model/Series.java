@@ -25,15 +25,19 @@ public class Series {
     private int id;
 
     @Column(name = "manufactured_at")
+    @NotNull(message = "Data produkcji nie może być pusta")
     private Date manufacturedAt;
 
     @Column(name = "end_at")
+    @NotNull(message = "Data ważności nie może być pusta")
     private Date endAt;
 
     @Column(name = "serial_number")
+    @NotNull(message = "Numer syeryjny nie może być pusty")
     private String serialNumber;
 
     @Column(name = "amount")
+    @NotNull(message = "Ilość nie może być pusta")
     private int amount;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

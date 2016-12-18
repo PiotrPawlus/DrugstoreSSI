@@ -1,6 +1,7 @@
 package com.ssi.drugstore.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -17,20 +18,22 @@ public class Profile {
     private int id;
 
     @Column(name = "name")
+    @NotNull(message = "Nazwa nie może być pusta")
     private String name;
 
     @Column(name = "surname")
+    @NotNull(message = "Nazwisko nie może być puste")
     private String surname;
 
     @Column(name = "date_of_birthday")
+    @NotNull(message = "Data urodzenia nie może być pusta")
     private Date dateOfBirthday;
 
     @Column(name = "phone")
+    @NotNull(message = "Telefon nie może być pusty")
     private String Phone;
 
-
     private int userAccountId;
-
 
     public int getId() {
         return id;
@@ -80,6 +83,4 @@ public class Profile {
     public void setUserAccountId(int userAccountId) {
         this.userAccountId = userAccountId;
     }
-
-
 }

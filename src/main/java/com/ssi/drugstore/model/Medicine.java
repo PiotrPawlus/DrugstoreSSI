@@ -26,18 +26,23 @@ public class Medicine {
     private int id;
 
     @Column(name = "name")
+    @NotNull(message = "Nazawa nie może być pusta")
     private String name;
 
     @Column(name = "price")
+    @NotNull(message = "Cena nie może być pusta")
     private Float price;
 
     @Column(name = "capacity")
+    @NotNull(message = "Pojemność/Ilość nie może być pusta")
     private int capacity;
 
     @Column(name = "measure")
+    @NotNull(message = "Miara nie może być pusta")
     private String measure;
 
     @Column(name = "description")
+    @NotNull(message = "Opis nie może być pusty")
     private String description;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
