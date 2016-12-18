@@ -2,6 +2,9 @@
 <%@ tag pageEncoding="UTF-8"%>
 <%@ tag body-content="scriptless" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -85,14 +88,19 @@
                             </ul>
                         </div>
 
-                        <div class="sidebar-option">
-                            <div class="widget-menu">
-                                <span class="widget-menu-title">Funkcje administratora</span>
+                        <sec:authorize  access="hasRole('ROLE_ADMIN')">
+                            <div class="sidebar-option">
+                                <div class="widget-menu">
+                                    <span class="widget-menu-title">Funkcje administratora</span>
+                                </div>
+                                <ul>
+                                    <li><a href="/dashboard/users"><i class="fa fa-cog" aria-hidden="true"></i>Zarządzaj Personelem</a></li>
+                                </ul>
                             </div>
-                            <ul>
-                                <li><a href="/dashboard/users"><i class="fa fa-cog" aria-hidden="true"></i>Zarządzaj Personelem</a></li>
-                            </ul>
-                        </div>
+                        </sec:authorize>
+
+
+
                         <div class="sidebar-option">
                             <div class="widget-menu">
                                 <span class="widget-menu-title">Zarządzaj kontem</span>

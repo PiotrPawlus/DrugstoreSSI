@@ -23,23 +23,28 @@
                         <div class="col-xs-6">
                             <form:hidden path="id" id="id"/>
                             <div class="form-group">
-                                <label>Email</label>
-                                <form:input path="username" id="username" type="text" class="form-control"/>
+                                <label>Email:</label>
+                                <form:input path="username" id="username" type="text" class="form-control" placeholder="Wpisz email"/>
+                                <form:errors path="username" cssStyle="color:red"></form:errors>
                             </div>
                             <div class="form-group">
-                                <label>Hasło</label>
-                                <form:input path="password" id="password" type="password" class="form-control"/>
+                                <label>Hasło:</label>
+                                <form:input path="password" id="password" type="password" class="form-control" placeholder="Wpisz hasło"/>
+                                <form:errors path="password" cssStyle="color:red"></form:errors>
                             </div>
                             <div class="form-group">
-                                <label>Hasło</label>
-                                <form:input path="passwordConfirm" id="passwordConfirm" type="password" class="form-control"/>
+                                <label>Potwierdzenie hasła:</label>
+                                <form:input path="passwordConfirm" id="passwordConfirm" type="password" class="form-control" placeholder="Wpisz ponownie hasło"/>
+                                <form:errors path="passwordConfirm" cssStyle="color:red"></form:errors>
                             </div>
                             <div class="form-group">
-                                <label>Stanowisko</label>
+                                <label>Stanowisko:</label>
                                 <form:select path="role" id="role" class="form-control">
+                                    <form:option value="NULL" label="Wybierz"/>
                                     <form:option value="ROLE_ADMIN" label="Administrator"/>
                                     <form:option value="ROLE_USER" label="Farmaceuta"/>
                                 </form:select>
+                                <form:errors path="role" cssStyle="color:red"></form:errors>
                             </div>
                         </div>
                         <button class="btn btn-success" type="submit">Dodaj</button>
