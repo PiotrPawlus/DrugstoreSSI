@@ -12,16 +12,12 @@ public class User {
 
     private int id;
 
-    @NotNull(message = "Nazwa użytkownika nie może być pusta")
     private String username;
 
-    @NotNull(message = "Hasło nie może być puste")
     private String password;
 
-    @NotNull(message = "Potwierdzenie hasła nie może być puste")
     private String passwordConfirm;
 
-    @NotNull(message = "Rola nie może być pusta")
     private String role;
 
     @Id

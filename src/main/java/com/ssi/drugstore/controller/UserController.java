@@ -59,18 +59,18 @@ public class UserController {
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public String create(@ModelAttribute User user, BindingResult bindingResult, ModelMap model){
+    public String create(@ModelAttribute("user") User user, BindingResult bindingResult, ModelMap model, HttpServletRequest request){
+
+        userValidator.validate(user, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            return "index";
+            request.setAttribute("user", new User());
+            request.setAttribute("users", users());
+
+            return "users";
         }
 
         userService.save(user);
-
-        securityService.autologin(user.getUsername(), user.getPasswordConfirm());
-
-
-
         model.addAttribute("user",new User());
 
         return "redirect:/dashboard/users";
