@@ -14,6 +14,7 @@ public class HomeController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model, String error, String logout) {
+
         return login(model, error, logout);
     }
 
@@ -30,6 +31,6 @@ public class HomeController {
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
 
-        return "login";
+        return "/login";
     }
 }

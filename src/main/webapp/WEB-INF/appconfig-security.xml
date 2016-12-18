@@ -10,7 +10,8 @@
     <http auto-config="true">
         <intercept-url pattern="/" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')"/>
         <intercept-url pattern="/dashboard" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')"/>
-        <form-login login-page="/login" default-target-url="/dashboard" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
+        <intercept-url pattern="/dashboard/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')"/>
+        <form-login login-page="/login" default-target-url="/dashboard" always-use-default-target='true' authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
         <logout logout-success-url="/login?logout" />
     </http>
 
