@@ -56,9 +56,15 @@
                                             <label for="name">Nazwa</label>
                                             <form:input path="name" id="name" name="name" class="form-control"/>
                                         </div>
+                                        <div class="from-group">
+                                            <form:errors path="name" cssStyle="color:red"/>
+                                        </div>
                                         <div class="form-group">
                                             <label for="web">Strona www</label>
                                             <form:input path="web" id="web" name="web" class="form-control"/>
+                                        </div>
+                                        <div class="from-group">
+                                            <form:errors path="web" cssStyle="color:red"/>
                                         </div>
                                     </div>
 
@@ -67,9 +73,15 @@
                                             <label for="mail">Aders mailowy</label>
                                             <form:input path="mail" id="mail" name="mail" class="form-control"/>
                                         </div>
+                                        <div class="from-group">
+                                            <form:errors path="mail" cssStyle="color:red"/>
+                                        </div>
                                         <div class="form-group">
                                             <label for="phone">Telefon</label>
                                             <form:input path="phone" id="phone" name="phone" class="form-control"/>
+                                        </div>
+                                        <div class="from-group">
+                                            <form:errors path="phone" cssStyle="color:red"/>
                                         </div>
                                     </div>
 

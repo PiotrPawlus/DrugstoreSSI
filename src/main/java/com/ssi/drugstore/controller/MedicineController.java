@@ -33,7 +33,9 @@ public class MedicineController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView create(Medicine medicine, BindingResult bindingResult) {
+    public ModelAndView create(@Valid @ModelAttribute("medicineForm") Medicine medicine, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) return new ModelAndView("medicineForm", bindingResult.getModel());
 
         MedicineRepository.createOrUpdate(medicine);
 
@@ -54,6 +56,8 @@ public class MedicineController {
     @RequestMapping(value = "/edit/{id}")
     public ModelAndView edit(@PathVariable String id) {
 
+        if (!ManufacturerRepository.isExisting(id)) return medicineModelAndView();
+
         Medicine medicine = MedicineRepository.getForIdentifier(id);
         medicine.setCategory(null);
         medicine.setManufacturer(null);
@@ -70,7 +74,8 @@ public class MedicineController {
     public String delete(@PathVariable String id) {
 
         Medicine medicine = MedicineRepository.getForIdentifier(id);
-        MedicineRepository.delete(medicine);
+
+        if (MedicineRepository.isExisting(id)) MedicineRepository.delete(medicine);
 
         return "redirect:/dashboard/medicines";
     }

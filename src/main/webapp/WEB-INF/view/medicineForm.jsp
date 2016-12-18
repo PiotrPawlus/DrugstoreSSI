@@ -46,19 +46,6 @@
                                 <form:form commandName="medicine" method="post" id="nowy-lek" action="/dashboard/medicines">
                                     <form:hidden path="id" id="id"/>
 
-                                    <div class="col-xs-12">
-                                        <strong><form:errors path="name"/></strong>
-                                    </div>
-                                    <div class="col-xs-12">
-                                        <strong><form:errors path="price"/></strong>
-                                    </div>
-                                    <div class="col-xs-12">
-                                        <strong><form:errors path="capacity"/></strong>
-                                    </div>
-                                    <div class="col-xs-12">
-                                        <strong><form:errors path="measure"/></strong>
-                                    </div>
-
                                     <div class="col-xs-6">
 
                                         <div class="form-group">
@@ -66,14 +53,19 @@
                                             <form:input path="name" id="name" name="name" class="form-control"/>
                                         </div>
                                         <div class="form-group">
+                                            <strong><form:errors path="name"/></strong>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="price">Cena</label>
                                             <form:input path="price" id="price" name="price" class="form-control"/>
                                         </div>
-
+                                        <div class="form-group">
+                                            <strong><form:errors path="price"/></strong>
+                                        </div>
                                         <div class="form-group">
                                             <label for="category.id">Kategoria</label>
 
-                                            <form:select path="category.id" id="category.id" name="kategoria" class="form-control">
+                                            <form:select path="category.id" id="category" name="category" class="form-control">
                                                 <option disabled selected>Wybierz</option>
                                                 <form:options items="${categories}" itemValue="id" itemLabel="name" />
                                             </form:select>
@@ -86,6 +78,9 @@
                                             <form:input path="capacity" id="capacity" name="capacity" class="form-control" type="number"/>
                                         </div>
                                         <div class="form-group">
+                                            <strong><form:errors path="capacity"/></strong>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="measure">Miara</label>
                                             <form:select path="measure" id="measure" name="measure" class="form-control">
                                                 <option disabled selected>Wybierz</option>
@@ -94,13 +89,14 @@
                                                 <form:option value="ml"/>
                                                 <form:option value="tabletki"/>
                                             </form:select>
-
-                                            <%-- <form:input path="measure" id="measure" name="measure" class="form-control"/> --%>
+                                        </div>
+                                        <div class="form-group">
+                                            <strong><form:errors path="measure"/></strong>
                                         </div>
                                         <div class="form-group">
                                             <label for="manufacturer.id">Producent</label>
 
-                                            <form:select path="manufacturer.id" id="manufacturer.id" class="form-control">
+                                            <form:select path="manufacturer.id" id="manufacturer" name="manufacturer" class="form-control">
                                                 <option disabled selected>Wybierz</option>
                                                 <form:options items="${manufacturers}" itemValue="id" itemLabel="name" />
                                             </form:select>
@@ -111,6 +107,9 @@
                                         <div class="form-group">
                                             <label for="description">Opis</label>
                                             <form:input path="description" id="description" name="description" class="form-control"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <strong><form:errors path="description"/></strong>
                                         </div>
                                     </div>
 

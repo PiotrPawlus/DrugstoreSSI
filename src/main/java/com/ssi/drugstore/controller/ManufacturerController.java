@@ -3,6 +3,7 @@ package com.ssi.drugstore.controller;
 import com.ssi.drugstore.model.Category;
 import com.ssi.drugstore.model.HibernateUtil;
 import com.ssi.drugstore.model.Manufacturer;
+import com.ssi.drugstore.repository.CategoryRepository;
 import com.ssi.drugstore.repository.ManufacturerRepository;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -31,7 +32,9 @@ public class ManufacturerController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView create(Manufacturer manufacturer, BindingResult bindingResult) {
+    public ModelAndView create(@Valid @ModelAttribute("manufacturerForm") Manufacturer manufacturer, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) return new ModelAndView("manufacturerForm", bindingResult.getModel());
 
         ManufacturerRepository.createOrUpdate(manufacturer);
 
@@ -50,6 +53,8 @@ public class ManufacturerController {
     @RequestMapping(value = "/edit/{id}")
     public ModelAndView edit(@PathVariable String id) {
 
+        if (!ManufacturerRepository.isExisting(id)) return manufacturerModelAndView();
+
         Manufacturer manufacturer = ManufacturerRepository.getForIdentifier(id);
 
         return new ModelAndView("manufacturerForm", "manufacturer", manufacturer);
@@ -59,7 +64,8 @@ public class ManufacturerController {
     public String delete(@PathVariable String id) {
 
         Manufacturer manufacturer = ManufacturerRepository.getForIdentifier(id);
-        ManufacturerRepository.delete(manufacturer);
+        if (ManufacturerRepository.isExisting(id)) ManufacturerRepository.delete(manufacturer);
+
         return "redirect:/dashboard/producers";
     }
 

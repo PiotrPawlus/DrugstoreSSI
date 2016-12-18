@@ -54,11 +54,17 @@
                                             <label for="name">Nazwa</label>
                                             <form:input path="name" id="name" name="name" class="form-control"/>
                                         </div>
+                                        <div class="from-group">
+                                            <form:errors path="name" cssStyle="color:red"/>
+                                        </div>
                                     </div>
                                     <div class="col-xs-6">
                                         <div class="form-group">
                                             <label for="description">Opis</label>
                                             <form:input path="description" id="description" class="form-control"/>
+                                        </div>
+                                        <div class="from-group">
+                                            <form:errors path="description" cssStyle="color:red"/>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 text-right">

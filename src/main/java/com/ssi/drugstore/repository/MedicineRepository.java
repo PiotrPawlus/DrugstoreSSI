@@ -15,6 +15,22 @@ import java.util.List;
  */
 public class MedicineRepository {
 
+    public static boolean isExisting(String id) {
+
+        Integer identifier = Integer.parseInt(id);
+
+        List medicines = MedicineRepository.all();
+        boolean exist = false;
+
+        for (Object element: medicines) {
+
+            Medicine medicine = (Medicine) element;
+            if (medicine.getId() == identifier) exist = true;
+        }
+
+        return exist;
+    }
+
     public static Medicine getForIdentifier(String id) {
 
         int identifier = Integer.parseInt(id);

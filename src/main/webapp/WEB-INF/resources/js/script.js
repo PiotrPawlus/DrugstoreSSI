@@ -43,7 +43,13 @@ $(document).ready(function() {
       measure: {
         required: true
       },
-      description: {
+          description: {
+              required: true
+      },
+      manufacturer: {
+        required: true
+      },
+      category: {
         required: true
       }
     }

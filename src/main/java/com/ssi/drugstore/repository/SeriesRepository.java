@@ -15,6 +15,22 @@ import java.util.List;
  */
 public class SeriesRepository {
 
+    public static boolean isExisting(String id) {
+
+        Integer identifier = Integer.parseInt(id);
+
+        List seriesList = SeriesRepository.all();
+        boolean exist = false;
+
+        for (Object element: seriesList) {
+
+            Series series = (Series) element;
+            if (series.getId() == identifier) exist = true;
+        }
+
+        return exist;
+    }
+
     public static Series getForIdentifier(String id) {
 
         Integer identifier = Integer.parseInt(id);

@@ -32,7 +32,9 @@ public class CategoryController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView create(Category category, BindingResult bindingResult) {
+    public ModelAndView create(@Valid @ModelAttribute("categoryForm") Category category, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) return new ModelAndView("categoryForm", bindingResult.getModel());
 
         CategoryRepository.createOrUpdate(category);
 
@@ -52,6 +54,7 @@ public class CategoryController {
     public ModelAndView edit(@PathVariable String id) {
 
         Category category = CategoryRepository.getForIdentifier(id);
+        if (!CategoryRepository.isExisting(id)) return categoryModelAndView();
 
         return new ModelAndView("categoryForm", "category", category);
     }
@@ -60,7 +63,8 @@ public class CategoryController {
     public String delete(@PathVariable String id) {
 
         Category category = CategoryRepository.getForIdentifier(id);
-        CategoryRepository.delete(category);
+
+        if (CategoryRepository.isExisting(id)) CategoryRepository.delete(category);
 
         return "redirect:/dashboard/categories";
     }

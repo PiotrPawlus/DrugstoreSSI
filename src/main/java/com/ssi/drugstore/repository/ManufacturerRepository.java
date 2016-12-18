@@ -14,6 +14,22 @@ import java.util.List;
  */
 public class ManufacturerRepository {
 
+    public static boolean isExisting(String id) {
+
+        Integer identifier = Integer.parseInt(id);
+
+        List manufacturers = ManufacturerRepository.all();
+        boolean exist = false;
+
+        for (Object element: manufacturers) {
+
+            Manufacturer manufacturer = (Manufacturer) element;
+            if (manufacturer.getId() == identifier) exist = true;
+        }
+
+        return exist;
+    }
+
     public static Manufacturer getForIdentifier(String id) {
 
         int identifier = Integer.parseInt(id);

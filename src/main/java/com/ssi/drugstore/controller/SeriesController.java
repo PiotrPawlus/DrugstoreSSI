@@ -31,29 +31,19 @@ public class SeriesController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView index(@PathVariable String medicineId) {
+
+        if (!MedicineRepository.isExisting(medicineId)) return medicineModelAndView();
         return seriesModelAndView(medicineId);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView create(@ModelAttribute("series") @Valid Series series, @PathVariable String medicineId, BindingResult bindingResult) {
+    public ModelAndView create(@ModelAttribute("seriesForm") @Valid Series series, @PathVariable String medicineId, BindingResult bindingResult) {
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
+        if (!MedicineRepository.isExisting(medicineId)) return medicineModelAndView();
+        if (bindingResult.hasErrors()) return new ModelAndView("seriesForm", bindingResult.getModel());
 
         series.setMedicine(MedicineRepository.getForIdentifier(medicineId));
-
-        try {
-
-            transaction = session.beginTransaction();
-            session.saveOrUpdate(series);
-            transaction.commit();
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
+        SeriesRepository.createOrUpdate(series, medicineId);
 
         return seriesModelAndView(medicineId);
     }
@@ -61,6 +51,7 @@ public class SeriesController {
     @RequestMapping(value = "/new")
     public ModelAndView newMedicine(@PathVariable String medicineId) {
 
+        if (!MedicineRepository.isExisting(medicineId)) return medicineModelAndView();
         Medicine medicine = MedicineRepository.getForIdentifier(medicineId);
         ModelMap map = new ModelMap();
         map.put("series", new Series());
@@ -71,6 +62,9 @@ public class SeriesController {
 
     @RequestMapping(value = "/edit/{id}")
     public ModelAndView edit(@PathVariable String medicineId, @PathVariable String id) {
+
+        if (!MedicineRepository.isExisting(medicineId)) return medicineModelAndView();
+        if (!SeriesRepository.isExisting(id)) return seriesModelAndView(medicineId);
 
         Medicine medicine = MedicineRepository.getForIdentifier(medicineId);
         Series series = SeriesRepository.getForIdentifier(id);
@@ -85,25 +79,10 @@ public class SeriesController {
     @RequestMapping(value = "/delete/{id}")
     public String delete(@PathVariable String medicineId, @PathVariable String id) {
 
+        if (!MedicineRepository.isExisting(medicineId)) return "redirect:/dashboard/medicines";
+
         Series series = SeriesRepository.getForIdentifier(id);
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-
-        try {
-
-            transaction = session.beginTransaction();
-            session.delete(series);
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            if (transaction != null) transaction.rollback();
-            throw e;
-
-        } finally {
-            session.close();
-        }
+        if (SeriesRepository.isExisting(id)) SeriesRepository.delete(series);
 
         return "redirect:/dashboard/medicines/series/" + medicineId;
     }
@@ -126,5 +105,9 @@ public class SeriesController {
         map.put("medicine", medicine);
 
         return new ModelAndView("series", map);
+    }
+
+    private ModelAndView medicineModelAndView() {
+        return new ModelAndView("medicines", "medicines", MedicineRepository.all());
     }
 }

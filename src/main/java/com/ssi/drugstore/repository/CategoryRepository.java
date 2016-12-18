@@ -14,6 +14,22 @@ import java.util.List;
  */
 public class CategoryRepository {
 
+    public static boolean isExisting(String id) {
+
+        Integer identifier = Integer.parseInt(id);
+
+        List categories = CategoryRepository.all();
+        boolean exist = false;
+
+        for (Object element: categories) {
+
+            Category category = (Category) element;
+            if (category.getId() == identifier) exist = true;
+        }
+
+        return exist;
+    }
+
     public static Category getForIdentifier(String id) {
 
         int identifier = Integer.parseInt(id);
