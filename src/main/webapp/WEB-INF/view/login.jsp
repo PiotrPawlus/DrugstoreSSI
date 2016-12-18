@@ -40,22 +40,18 @@
                             <!-- <form> -->
 
                             <form method="POST" action="${contextPath}/login" class="form-signin">
+
+                            <span style="color:#2baa16">${message}</span>
                             <div class="form-group ${error != null ? 'has-error' : ''}">
-                                <a href="#" class="pull-right label-forgot">Zapomniałeś email?</a>
-                                <span>${message}</span>
                                 <label for="inputUsernameEmail">Adres email:</label>
                                 <input name="username" type="email" class="form-control" placeholder="Wpisz emial"
                                        autofocus="true" id="inputUsernameEmail"/>
                             </div>
                             <div class="form-group">
-                                <a href="#" class="pull-right label-forgot">Zapomniałeś hasło?</a>
                                 <label for="inputPassword">Hasło:</label>
                                 <input name="password" type="password" class="form-control" placeholder="Password" id="inputPassword"/>
-                                <span>${error}</span>
+                                <span style="color:#d70000">${error}</span>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                            </div>
-                            <div class="checkbox pull-left">
-                                <label><input type="checkbox">Zapamiętaj mnie</label>
                             </div>
                             <a href="/dashboard"><button class="btn btn-primary pull-right" type="submit">Zaloguj się</button></a>
                             <div class="clearfix"></div>
