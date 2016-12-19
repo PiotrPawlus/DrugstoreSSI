@@ -1,5 +1,41 @@
 $(document).ready(function() {
 
+    function calendar() {
+        var months = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
+        var days = ["Nd", "Pon", "Wt", "Śr", "Czw", "Pt", "Sob"];
+
+        var d = new Date();
+        var day = days[d.getDay()];
+        var date = d.getDate();
+        var month = months[d.getMonth()];
+        var year = d.getFullYear();
+        var x = document.getElementById("time");
+
+        $('.navbar-calendar p').html(day + ", " + date + " " + month + " " + year);
+    }
+
+    function time() {
+        var d = new Date();
+        var hr = d.getHours();
+        var min = d.getMinutes();
+        var sec = d.getSeconds();
+
+        if(sec < 10)
+        {
+            sec = "0" + sec;
+        }
+
+        $('.navbar-clock p').html(hr + " : " + min + " : " + sec);
+    }
+
+    calendar();
+    time();
+    setInterval(calendar, 1000);
+    setInterval(time, 1000);
+
+    $('.navbar-weather i').removeClass('fa-bolt').addClass('fa-globe');
+    $('.navbar-weather p').html('Kraków');
+
   $("#nowy-producent").validate({
     rules: {
       name: {

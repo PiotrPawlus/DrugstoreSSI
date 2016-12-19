@@ -6,33 +6,46 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
-    <title>Error 500</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Projekt SSI</title>
+
+    <spring:url value="/resources/css/style.css" var="styleCss" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link href="${styleCss}" rel="stylesheet" />
 </head>
-<body>
+<body id="login-wrapper">
 
 <div class="container">
-
-    <div class="row">
-        <div class="col-xs-3"></div>
-        <div class="col-xs-6">
-            <img src="/resources/img/pills.png" alt="pills" class="img-rounded">
+    <div class="login-wrapper">
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-4">
+                <div class="logo-login">
+                    <h2>Apteka SSI</h2>
+                </div>
+            </div>
         </div>
-        <div class="col-xs-3"></div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-3"></div>
-        <div class="col-xs-6">
-            <h1>ERROR 500</h1>
-            <h3>Naprawimy to!</h3>
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-4">
+                <div class="account-data text-center">
+                    <h3>505 HTTP Version Not Supported</h3>
+                    <p>Serwer nie obsługuje bądź odmawia obsługi wskazanej przez klienta wersji HTTP.</p>
+                    <p><a href="/">Kliknij</a> by przejść do strony głównej.</p>
+                </div>
+            </div>
         </div>
-        <div class="col-xs-3"></div>
     </div>
-
 </div>
 
-
+<spring:url value="/resources/js/script.js" var="scriptJS" />
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="${scriptJS}"></script>
 </body>
 </html>
