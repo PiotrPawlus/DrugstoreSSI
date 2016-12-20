@@ -52,11 +52,11 @@
                                     <thead class="cf">
                                     <tr>
                                         <th>ID</th>
-                                        <th>Imię i nazwisko</th>
-                                        <th>Email</th>
-                                        <th class="numeric">Adres zamieszkania</th>
+                                        <th>Imię</th>
+                                        <th>Nazwisko</th>
+                                        <th class="numeric">Email</th>
                                         <th class="numeric">Data urodzenia</th>
-                                        <th class="numeric">Data zatrudnienia</th>
+                                        <th class="numeric">Telefon</th>
                                         <th class="numeric">Stanowisko</th>
                                         <th class="numeric">Akcje</th>
                                     </tr>
@@ -64,20 +64,26 @@
                                     <tbody>
 
                                     <c:forEach items="${users}" var="user">
-                                        <tr>
-                                            <td><c:out value="${user.id}"/></td>
-                                            <td>Jan Kowalski</td>
-                                            <td><c:out value="${user.username}"/></td>
-                                            <td class="numeric">Warszawska 129, 31-490 Kraków</td>
-                                            <td class="numeric">05.11.1983</td>
-                                            <td class="numeric">10.02.2015</td>
-                                            <td class="numeric"><c:out value="${user.role}"/></td>
-                                            <td>
-                                                <a href="/dashboard/users/edit/${user.id}" class="btn btn-primary btn-sm">Edytuj</a>
-                                                <a href="/dashboard/users/delete/${user.id}" class="btn btn-danger btn-sm">Usuń</a>
-                                            </td>
-                                        </tr>
+                                        <c:forEach items="${profiles}" var="profile">
+                                            <c:if test="${user.id == profile.user_id.id}">
+                                                <tr>
+                                                    <td><c:out value="${user.id}"/></td>
+                                                    <td><c:out value="${profile.name}"/></td>
+                                                    <td><c:out value="${profile.surname}"/></td>
+                                                    <td><c:out value="${user.username}"/></td>
+                                                    <td><c:out value="${profile.dateOfBirthday}"/></td>
+                                                    <td><c:out value="${profile.phone}"/></td>
+                                                    <c:if test="${user.role.equals('ROLE_ADMIN')}"><td><c:out value="Administrator"/></td></c:if>
+                                                    <c:if test="${user.role.equals('ROLE_USER')}"><td><c:out value="Farmaceuta"/></td></c:if>
+                                                    <td>
+                                                        <a href="/dashboard/users/edit/${user.id}" class="btn btn-primary btn-sm">Edytuj</a>
+                                                        <a href="/dashboard/users/delete/${user.id}" class="btn btn-danger btn-sm">Usuń</a>
+                                                    </td>
+                                                </tr>
+                                            </c:if>
+                                        </c:forEach>
                                     </c:forEach>
+
 
                                     </tbody>
                                 </table>

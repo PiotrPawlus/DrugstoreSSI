@@ -139,6 +139,7 @@ $(document).ready(function() {
 
   $("#manufacturedAt").datepicker({ dateFormat: 'dd/mm/yy' });
   $("#endAt").datepicker({ dateFormat: 'dd/mm/yy' });
+  $("#dateOfBirthday").datepicker({ dateFormat: 'dd/mm/yy' });
 
 
 

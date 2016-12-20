@@ -12,8 +12,7 @@ import java.util.Date;
 public class Profile {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "personal_id_seq")
-    @SequenceGenerator(name = "personal_id_seq", sequenceName = "personal_id_seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id")
     private int id;
 
@@ -31,9 +30,12 @@ public class Profile {
 
     @Column(name = "phone")
     @NotNull(message = "Telefon nie może być pusty")
-    private String Phone;
+    private String phone;
 
-    private int userAccountId;
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    @NotNull(message = "User nie może być pusty")
+    private User user_id;
 
     public int getId() {
         return id;
@@ -68,19 +70,21 @@ public class Profile {
         this.dateOfBirthday = dateOfBirthday;
     }
 
+
+
+    public User getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(User user_id) {
+        this.user_id = user_id;
+    }
+
     public String getPhone() {
-        return Phone;
+        return phone;
     }
 
     public void setPhone(String phone) {
-        Phone = phone;
-    }
-
-    public int getUserAccountId() {
-        return userAccountId;
-    }
-
-    public void setUserAccountId(int userAccountId) {
-        this.userAccountId = userAccountId;
+        this.phone = phone;
     }
 }
