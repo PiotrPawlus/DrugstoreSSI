@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="z" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <z:dashboard pageTitle="A simple page">
 
@@ -43,33 +45,45 @@
                             <div class="content-panel-header">
                                 <h4>Twoje dane</h4>
                             </div>
-                            <div class="content-panel-body">
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <label for="name">Imię</label>
-                                        <input type="text" id="name" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="adress">Data urodzenia</label>
-                                        <input type="password" id="adress" class="form-control">
-                                    </div>
 
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <label for="data1">Nazwisko</label>
-                                        <input type="email" id="data1" class="form-control">
+
+                            <form:form commandName="profile" method="post" action="/dashboard/profile">
+                                <form:errors path="*" class="has-error" />
+
+                                <form:hidden path="id" id="id"/>
+                                <form:hidden path="user_id.id" value="${user.getId()}"/>
+
+                                <div class="content-panel-body">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label>Imię</label>
+                                            <form:input path="name"  type="text"  class="form-control" placeholder="Wpisz imię"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Data urodzenia</label>
+                                            <form:input path="dateOfBirthday" type="text" id="dateOfBirthday"  class="form-control" placeholder="Wpisz date urodzenia"/>
+                                        </div>
+
                                     </div>
-                                    <div class="form-group">
-                                        <label for="data2">Telefon</label>
-                                        <input type="password" id="exampleInputPassword1" class="form-control">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label>Nazwisko</label>
+                                            <form:input path="surname" type="text" class="form-control" placeholder="Wpisz nazwisko"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Telefon</label>
+                                            <form:input path="phone" type="text" class="form-control" placeholder="Wpisz telefon"/>
+                                        </div>
                                     </div>
+                                    <div class="col-xs-12 text-right">
+                                        <button class="btn btn-success" type="submit">Zapisz</button>
+                                    </div>
+                                    <div class="clearfix"></div>
                                 </div>
-                                <div class="col-xs-12 text-right">
-                                    <button class="btn btn-success" type="submit">Zapisz</button>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
+
+                            </form:form>
+
+
                         </div>
                         <div class="clearfix"></div>
                     </div>

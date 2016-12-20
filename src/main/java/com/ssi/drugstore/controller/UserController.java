@@ -2,6 +2,7 @@ package com.ssi.drugstore.controller;
 
 import com.ssi.drugstore.model.HibernateUtil;
 import com.ssi.drugstore.model.User;
+import com.ssi.drugstore.repository.ProfileRepository;
 import com.ssi.drugstore.service.SecurityService;
 import com.ssi.drugstore.service.UserService;
 import com.ssi.drugstore.validator.UserValidator;
@@ -44,6 +45,7 @@ public class UserController {
     public String index(Model model, HttpServletRequest request) {
 
         request.setAttribute("user", new User());
+        request.setAttribute("profiles", ProfileRepository.all());
         request.setAttribute("users", users());
 
         return "users";

@@ -106,7 +106,7 @@
                                 <span class="widget-menu-title">Zarządzaj kontem</span>
                             </div>
                             <ul>
-                                <li><a href="/dashboard/personal"><i class="fa fa-bar-chart" aria-hidden="true"></i>Twoje dane personalne</a></li>
+                                <li><a href="/dashboard/profile"><i class="fa fa-bar-chart" aria-hidden="true"></i>Twoje dane personalne</a></li>
                             </ul>
                         </div>
 
